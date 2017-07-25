@@ -64,6 +64,8 @@ class MotoDll:
         self.lib.StartPLC.argtypes = (c_int, c_int)
         self.lib.StartPLC.restype = c_int
         self.lib.StopPLC.restype = c_int
+        self.lib.GetPortName.argtypes = (c_int, c_char_p)
+        self.lib.GetPortName.restype = c_int
 
     def initParser(self):
         """
@@ -151,12 +153,14 @@ class MotoDll:
         """
         pass
 
-    def getPortName(self, inv, buf):
+    def getPortName(self, inv):
         """
-        !!!YET NOT IMPLEMENTED!!!
         Получить текстовое имя интерфейса подключения привода. Длина имени не более 32 символов.
         """
-        pass
+        buf = c_char_p(b'')
+        result = self.lib.GetPortName(c_int(inv), buf)
+        self.__chekResult(result)
+        return str(buf.value)
 
     def addParamToStream(self, inv, name, onPointCallBack):
         """
@@ -222,5 +226,6 @@ print('cp1 = ', val_new)
 moto.writeVal(1, b'cp1', val)
 moto.startPLC(1, 0)
 moto.stopPLC(1, 0)
+print(moto.getPortName(1))
 moto.closePort(1)
 moto.closeParser()
