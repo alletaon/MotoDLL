@@ -198,8 +198,7 @@ class MotoDll:
         Завершает работу с библиотекой
         Функцию необходимо вызывать обязательно для корректного завершения работы драйвера CAN.
         """
-        result = self.lib.CloseParser()
-        self.__chekResult(result)
+        self.lib.CloseParser()
 
     def __chekResult(self, result):
         if int(result) < 0:
