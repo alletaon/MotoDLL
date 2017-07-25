@@ -1,5 +1,5 @@
 from ctypes import *
-from time import sleep
+#from time import sleep
 
 
 class MotoDll:
@@ -212,7 +212,7 @@ class MotoDll:
     def __chekResult(self, result):
         if int(result) < 0:
             raise Exception(self.errorCode[int(result)])
-
+"""
 # EXAMPLE USAGE:
 moto = MotoDll()
 moto.initParser()
@@ -249,3 +249,4 @@ print(moto.getPortName(1))
 #print(moto.loadProgram(1, 1))
 moto.closePort(1)
 moto.closeParser()
+"""

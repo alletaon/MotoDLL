@@ -1,3 +1,4 @@
+from time import sleep
 from unittest import TestCase
 from main import MotoDll
 
@@ -23,3 +24,14 @@ class TestMotoDll(TestCase):
         self.assertEqual(val, 3.0)
         self.moto.writeVal(1, b'cp1', 4.0)
         self.moto.startPLC(1, 3)
+        sleep(2)
+        val = self.moto.readVal(1, b'ip2')
+        self.assertEqual(val, 3.0)
+        val = self.moto.readVal(1, b'ip11')
+        self.assertEqual(val, 0.0)
+        self.moto.stopPLC(1)
+        sleep(2)
+        val = self.moto.readVal(1, b'ip2')
+        self.assertEqual(val, 255.0)
+        self.moto.closePort(1)
+        self.moto.closeParser()
