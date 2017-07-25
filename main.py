@@ -135,7 +135,7 @@ class MotoDll:
         """
         Остановить выполнение программы ПЛК.
         """
-        result = self.lib.stopPLC(c_int(inv))
+        result = self.lib.StopPLC(c_int(inv))
         self.__chekResult(result)
 
     def loadProgram(self, motor, bank):
@@ -227,9 +227,9 @@ moto.writeVal(1, b'cp1', 3.0)
 val_new = moto.readVal(1, b'cp1')
 print('cp1 = ', val_new)
 moto.writeVal(1, b'cp1', val)
-#moto.startPLC(1, 0)
-#moto.stopPLC(1)
+moto.startPLC(1, 0)
+moto.stopPLC(1)
 print(moto.getPortName(1))
-print(moto.loadProgram(1, 1))
+#print(moto.loadProgram(1, 1))
 moto.closePort(1)
 moto.closeParser()
