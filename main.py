@@ -1,4 +1,6 @@
 from ctypes import *
+from time import sleep
+
 
 class MotoDll:
     """
@@ -214,7 +216,13 @@ class MotoDll:
 # EXAMPLE USAGE:
 moto = MotoDll()
 moto.initParser()
-count = moto.enumDevices(True)
+repeatCount = 10
+count = 0
+while repeatCount > 0:
+    count = moto.enumDevices(True)
+    if count > 0:
+        break
+    repeatCount -= 1
 print('Count: ', count)
 if count == 0:
     print('No devices available')
@@ -227,8 +235,16 @@ moto.writeVal(1, b'cp1', 3.0)
 val_new = moto.readVal(1, b'cp1')
 print('cp1 = ', val_new)
 moto.writeVal(1, b'cp1', val)
-moto.startPLC(1, 0)
+moto.startPLC(1, 3)
+# read current program bank must be 3
+print(moto.readVal(1, b'ip2'))
+sleep(2)
+# read current plc status
+print(moto.readVal(1, b'ip11'))
 moto.stopPLC(1)
+sleep(2)
+# read current program bank must be 255
+print(moto.readVal(1, b'ip2'))
 print(moto.getPortName(1))
 #print(moto.loadProgram(1, 1))
 moto.closePort(1)
