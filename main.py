@@ -50,6 +50,7 @@ class MotoDll:
                  -18: 'BAD_ADDR',
                  -19: 'TOO LONG',
                  -20: 'FRAMING_ERROR'}
+    plcVersion = 3
 
     def __init__(self):
         self.lib = cdll.LoadLibrary('./moto_dll2.dll')
@@ -64,6 +65,8 @@ class MotoDll:
         self.lib.StartPLC.argtypes = (c_int, c_int)
         self.lib.StartPLC.restype = c_int
         self.lib.StopPLC.restype = c_int
+        self.lib.LoadProgram.argtypes = (c_int, c_int, POINTER(c_short), POINTER(c_int))
+        self.lib.LoadProgram.restype = c_int
         self.lib.GetPortName.argtypes = (c_int, c_char_p)
         self.lib.GetPortName.restype = c_int
 
@@ -128,14 +131,14 @@ class MotoDll:
         result = self.lib.StartPLC(c_int(inv), c_int(index))
         self.__chekResult(result)
 
-    def stopPLC(self, inv, index):
+    def stopPLC(self, inv):
         """
         Остановить выполнение программы ПЛК.
         """
-        result = self.lib.StartPLC(c_int(inv), c_int(index))
+        result = self.lib.stopPLC(c_int(inv))
         self.__chekResult(result)
 
-    def loadProgram(self, motor, bank, program, version):
+    def loadProgram(self, motor, bank):
         """
         !!!YET NOT IMPLEMENTED!!!
         Считать программу из банка bank привода motor. Программа записывается в буфер program,
@@ -224,8 +227,9 @@ moto.writeVal(1, b'cp1', 3.0)
 val_new = moto.readVal(1, b'cp1')
 print('cp1 = ', val_new)
 moto.writeVal(1, b'cp1', val)
-moto.startPLC(1, 0)
-moto.stopPLC(1, 0)
+#moto.startPLC(1, 0)
+#moto.stopPLC(1)
 print(moto.getPortName(1))
+print(moto.loadProgram(1, 1))
 moto.closePort(1)
 moto.closeParser()
