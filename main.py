@@ -139,6 +139,9 @@ class MotoDll:
         """
         result = self.lib.StopPLC(c_int(inv))
         self.__chekResult(result)
+        speed = self.readVal(inv, b'ct2')
+        if speed > 0.0:
+            self.writeVal(inv, b'ct2', 0.0)
 
     def loadProgram(self, motor, bank):
         """

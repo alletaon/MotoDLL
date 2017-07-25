@@ -26,10 +26,12 @@ moto.writeVal(1, b'cp1', val)
 moto.startPLC(1, 3)
 # read current program bank must be 3
 print(moto.readVal(1, b'ip2'))
-sleep(2)
+print(moto.readVal(1, b'ip11'))
+sleep(10)
 # read current plc status
 print(moto.readVal(1, b'ip11'))
 moto.stopPLC(1)
+moto.writeVal(1, b'ct2', 0.0)
 sleep(2)
 # read current program bank must be 255
 print(moto.readVal(1, b'ip2'))
