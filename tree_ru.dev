@@ -1,0 +1,3824 @@
+//-------------------------------------------------------------
+// СВОЙСТВА МОДУЛЯ
+//-------------------------------------------------------------
+Unit
+
+UnitName    =Имя конфигурации не указано
+UnitVersion =не указано
+
+//-------------------------------------------------------------
+// ДЕРЕВО ПАРАМЕТРОВ
+//-------------------------------------------------------------
+Interface
+
+0,node: Фиксированные параметры
+1,node: Статические параметры
+2,cp: Контур тока
+2,vp: Контур скорости
+2,pp: Контур положения
+2,st: Общие
+2,ip: Интерфейс
+2,ep: Сервисные параметры
+2,io: Порты ввода-вывода
+2,pd: Технологический ПИД регулятор
+1,ct: Параметры управления
+1,dd: Динамические параметры
+1,ss: Системные параметры
+1,tp: Параметры тестирования
+0,node: Пользовательские параметры
+1,up: Пользовательские переменные
+
+//-------------------------------------------------------------
+// ОПИСАНИЕ ПАРАМЕТРОВ
+//-------------------------------------------------------------
+Descriptions
+
+---
+NAME     =cp1
+GROUP    =cp
+CAPTION  =Пропорциональный коэффициент контура тока
+UNITS    =
+LIST     =
+ADDRESS  =0x0000
+DESCRIP  =Параметр настройки ПИ-регулятора контура тока
+MINMAX   =0;100
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =cp2
+GROUP    =cp
+CAPTION  =Интегральный коэффициент контура тока
+UNITS    =
+LIST     =
+ADDRESS  =0x0002
+DESCRIP  =Параметр настройки ПИ-регулятора контура тока
+MINMAX   =0;200
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =cp3
+GROUP    =cp
+CAPTION  =Максимальный ток
+UNITS    =Дискрет
+LIST     =
+ADDRESS  =0x0004
+DESCRIP  =Определять предельную величину тока допустимую для двигателя.
+MINMAX   =0;1500
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =0.25
+MACROS   =1
+---
+NAME     =cp4
+GROUP    =cp
+CAPTION  =Максимальная скваженность ШИМ
+UNITS    =Дискрет
+LIST     =
+ADDRESS  =0x0005
+DESCRIP  =3070 дискрет соответствует 100% заполнения
+MINMAX   =0;6150
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =0.25
+MACROS   =1
+---
+NAME     =vp1
+GROUP    =vp
+CAPTION  =Пропорциональный коэффициент контура скорости
+UNITS    =
+LIST     =
+ADDRESS  =0x0006
+DESCRIP  =Параметр настройки ПИ-регулятора контура скорости
+MINMAX   =0;60000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =vp2
+GROUP    =vp
+CAPTION  =Интегральный коэффициент контура скорости
+UNITS    =
+LIST     =
+ADDRESS  =0x0007
+DESCRIP  =Параметр настройки ПИ-регулятора контура скорости
+MINMAX   =0;60000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =vp16
+GROUP    =vp
+CAPTION  =Дифференциальный коэффициент контура скорости
+UNITS    =
+LIST     =
+ADDRESS  =0x0050
+DESCRIP  =Параметр настройки ПИ-регулятора контура скорости
+MINMAX   =0;60000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =vp3
+GROUP    =vp
+CAPTION  =Коэффициент обратной связи по скорости
+UNITS    =
+LIST     =
+ADDRESS  =0x0008
+DESCRIP  =Определяет масштаб датчика скорости
+MINMAX   =-1;1
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =vp4
+GROUP    =vp
+CAPTION  =Частота дискретизации контура скорости
+UNITS    =
+LIST     =100:100; 200:200; 500:500; 1000:1000; 2000:2000; 3000:3000; 4000:4000; 5000:5000;
+ADDRESS  =0x0009
+DESCRIP  =Определяет частоту обсчета контура скорости
+MINMAX   =100;5000
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =vp5
+GROUP    =vp
+CAPTION  =Ускорение
+UNITS    =об/(сек^2)
+LIST     =
+ADDRESS  =0x000A
+DESCRIP  =Определяет динамику контура скорости
+MINMAX   =1;2000000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =10
+MACROS   =0
+---
+NAME     =pp1
+GROUP    =pp
+CAPTION  =Пропорциональный коэффициент контура положения
+UNITS    =
+LIST     =
+ADDRESS  =0x000B
+DESCRIP  =Параметр настройки ПИ-регулятора контура позиционирования
+MINMAX   =0;10000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =4
+MACROS   =0
+---
+NAME     =pp2
+GROUP    =pp
+CAPTION  =Интегральный коэффициент контура положения
+UNITS    =
+LIST     =
+ADDRESS  =0x000C
+DESCRIP  =Параметр настройки ПИ-регулятора контура позиционирования
+MINMAX   =0;30000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =4
+MACROS   =0
+---
+NAME     =pp3
+GROUP    =pp
+CAPTION  =Частота дискретизации контура положения
+UNITS    =
+LIST     =25:25; 50:50; 100:100; 200:200; 500:500; 1000:1000; 2000:2000; 3000:3000; 4000:4000; 5000:5000;
+ADDRESS  =0x000D
+DESCRIP  =Определяет частоту обсчета контура позиции.
+MINMAX   =25;5000
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =vp6
+GROUP    =vp
+CAPTION  =Максимальное время выхода на номинальный режим
+UNITS    =сек
+LIST     =0:Не ограничено;1:1;2:2;3:3;4:4;5:5;6:6;7:7;8:8;9:9;10:10;11:11;12:12;13:13;14:14;15:15;16:16;17:17;18:18;19:19;20:20;21:21;22:22;23:23;24:24;25:25;26:26;27:27;28:28;29:29;30:30
+ADDRESS  =0x000E
+DESCRIP  =Время, по истечению которого привод переходит в состояние останова, если не достигнута заданная скорость
+MINMAX   =0;30
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =1
+MACROS   =1
+---
+NAME     =cp5
+GROUP    =cp
+CAPTION  =Состояние контура тока
+UNITS    =
+LIST     =0:Разомкнут; 2:Замкнут;4:Прямое управление токами в обмотках;5:Адаптивное упрваление;6:Прямое раздельное управление токами в обмотках;
+ADDRESS  =0x0010
+DESCRIP  =Обеспечивает замкнутое или разомкнутое регулирование контура тока. В стандартном режиме использования контур должен быть замкнут.
+MINMAX   =0;6
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =vp7
+GROUP    =vp
+CAPTION  =Состояние контура скорости
+UNITS    =
+LIST     =0:Разомкнут; 2:Замкнут;
+ADDRESS  =0x0011
+DESCRIP  =Обеспечивает замкнутое или разомкнутое регулирование контура скорости. Контур должен быть замкнут в режиме управления скоростью привода и в режиме управления позицией.
+MINMAX   =0;2
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =pp5
+GROUP    =pp
+CAPTION  =Состояние контура положения
+UNITS    =
+LIST     =0:Разомкнут; 2:Замкнут;
+ADDRESS  =0x0012
+DESCRIP  =Обеспечивает замкнутое или разомкнутое регулирование контура позиции
+MINMAX   =0;2
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =vp8
+GROUP    =vp
+CAPTION  =Максимальная скорость вращения
+UNITS    =об/мин
+LIST     =
+ADDRESS  =0x0014
+DESCRIP  =Ограничение максимальной скорости вращения привода.
+MINMAX   =0;8000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =vp9
+GROUP    =vp
+CAPTION  =Динамический режим
+UNITS    =
+LIST     =0:Режим плавного разгона/торможения;2:Режим с максимальной динамикой;3:Режим G декодирования;4:S кривая;
+ADDRESS  =0x000F
+DESCRIP  =Включает или отключает внутренний интерполятор. В режиме управления приводов от внешнего контроллера, например, от ЧПУ, привод должен находиться в режиме с максимальной динамикой. Режим G декодирования позволяет реализовать контурное управление непосредственно группой приводов без использования внешнего контроллера.
+MINMAX   =0;4
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ss1
+GROUP    =ss
+CAPTION  =Тестовый параметр
+UNITS    =
+LIST     =
+ADDRESS  =0x0013
+DESCRIP  =
+MINMAX   =-65535;65535
+SERVICE  =0
+READONLY =0
+DEVELOP  =1
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ct1
+GROUP    =ct
+CAPTION  =Задание тока
+UNITS    =А
+LIST     =
+ADDRESS  =0x0200
+DESCRIP  =Сигнал управления при разомкнутом контуре скорости и положения
+MINMAX   =-3500;3500
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =0.05
+MACROS   =1
+---
+NAME     =ct2
+GROUP    =ct
+CAPTION  =Задание скорости
+UNITS    =об/мин
+LIST     =
+ADDRESS  =0x0202
+DESCRIP  =Сигнал управления при разомкнутом контуре положения
+MINMAX   =-12000;12000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =ct3
+GROUP    =ct
+CAPTION  =Задание положения
+UNITS    =импульсы
+LIST     =
+ADDRESS  =0x0204
+DESCRIP  =Сигнал управления при замкнутом контуре положения
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =dd1
+GROUP    =dd
+CAPTION  =Ток в обмотке 1
+UNITS    =А
+LIST     =
+ADDRESS  =0x0400
+DESCRIP  =Показывает ток, протекающий в обмотке двигателя
+MINMAX   =-5;5
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =16
+STEP     =0.05
+MACROS   =1
+---
+NAME     =dd6
+GROUP    =dd
+CAPTION  =Заданный ток в обмотке 1
+UNITS    =А
+LIST     =
+ADDRESS  =0x040A
+DESCRIP  =
+MINMAX   =-2047;2047
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =1
+---
+NAME     =dd3
+GROUP    =dd
+CAPTION  =Ток в обмотке 2
+UNITS    =А
+LIST     =
+ADDRESS  =0x0405
+DESCRIP  =Индицирует ток, протекающий в обмотке двигателя
+MINMAX   =-5;5
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =16
+STEP     =0.05
+MACROS   =1
+---
+NAME     =dd9
+GROUP    =dd
+CAPTION  =Заданный ток в обмотке 2
+UNITS    =А
+LIST     =
+ADDRESS  =0x040D
+DESCRIP  =
+MINMAX   =-2047;2047
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =1
+---
+NAME     =dd2
+GROUP    =dd
+CAPTION  =Заданный ток в роторной системе координат
+UNITS    =А
+LIST     =
+ADDRESS  =0x0402
+DESCRIP  =Индицирует ток, который задан контуром скорости
+MINMAX   =-5;5
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =16
+STEP     =0.05
+MACROS   =1
+---
+NAME     =dd4
+GROUP    =dd
+CAPTION  =Текущая скорость вращения
+UNITS    =об/мин
+LIST     =
+ADDRESS  =0x0408
+DESCRIP  =
+MINMAX   =-5000;5000
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =8
+STEP     =12
+MACROS   =0
+---
+NAME     =dd5
+GROUP    =dd
+CAPTION  =Заданная скорость вращения
+UNITS    =об/мин
+LIST     =
+ADDRESS  =0x0409
+DESCRIP  =
+MINMAX   =-5000;5000
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =16
+STEP     =12
+MACROS   =0
+---
+NAME     =dd21
+GROUP    =dd
+CAPTION  =Ошибка контура скорости
+UNITS    =об/мин
+LIST     =
+ADDRESS  =0x0419
+DESCRIP  =
+MINMAX   =-65535;65535
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =16
+STEP     =1
+MACROS   =0
+---
+NAME     =dd7
+GROUP    =dd
+CAPTION  =Заданная позиция
+UNITS    =имп.
+LIST     =
+ADDRESS  =0x040B
+DESCRIP  =
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =dd8
+GROUP    =dd
+CAPTION  =Текущая позиция
+UNITS    =имп.
+LIST     =
+ADDRESS  =0x040C
+DESCRIP  =
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =dd20
+GROUP    =dd
+CAPTION  =Ошибка контура позиции
+UNITS    =имп.
+LIST     =
+ADDRESS  =0x0418
+DESCRIP  =
+MINMAX   =-2147483647;2147483647
+SERVICE  =1
+READONLY =1
+DEVELOP  =0
+BITS     =32
+STEP     =10
+MACROS   =0
+---
+NAME     =dd10
+GROUP    =dd
+CAPTION  =Температура внутри корпуса
+UNITS    =град.
+LIST     =
+ADDRESS  =0x040E
+DESCRIP  =
+MINMAX   =-40;120
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =1
+---
+NAME     =dd19
+GROUP    =dd
+CAPTION  =Текущее цифровое напряжение
+UNITS    =В
+LIST     =
+ADDRESS  =0x0417
+DESCRIP  =
+MINMAX   =0;23
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =1
+---
+NAME     =dd12
+GROUP    =dd
+CAPTION  =Текущее напряжение питания
+UNITS    =В
+LIST     =
+ADDRESS  =0x0410
+DESCRIP  =
+MINMAX   =0;120
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =1
+---
+NAME     =dd11
+GROUP    =dd
+CAPTION  =Статус контроллера
+UNITS    =
+LIST     =0:Исправен; 1:Останов по команде; 2:Останов - высокое противодействующее усилие; 3:Останов - короткое замыкание;4:Выход из температурного диапазона; 5:Повышенное силовое напряжение;6:Низкое силовое напряжение;7:Повышенное цифровое напряжение;8:Низкое цифровое напряжение;9:Cиловое напряжение превышает напряжение, установл. пользователем;10:Останов - превышение допустимой перегрузки;11:Останов - сработала защита IGBT модуля;12:Останов - Ошибка поиска фазы по UVW трекам;13:Останов - ошибка в настройках энкодера;14: Останов - сбой в работе энкодера;15: Останов - Ошибка фазировки двигателя;
+ADDRESS  =0x040F
+DESCRIP  =Привод в состоянии отработать задание только, если его статус "Исправен".
+MINMAX   =0;15
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =st1
+GROUP    =st
+CAPTION  =Разрешение
+UNITS    =имп.
+LIST     =
+ADDRESS  =0x0015
+DESCRIP  =Разрешение датчика положения/скорости
+MINMAX   =0;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =tp1
+GROUP    =tp
+CAPTION  =Режим осциллографа
+UNITS    =
+LIST     =0:Непрерывный режим;1:Ступенька;2:Синус;3:Приращение скорости;4:Синусоидальное изменение скорости;5:Треугольное изменение позиции;6:Измерение без задания;7:Измерение без задания до принудительного останова; 8:Приращение момента;
+ADDRESS  =0x0500
+DESCRIP  =Режим сканирования динамических параметров (отображение выбранных параметров в процессе работы привода).
+MINMAX   =0;8
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =tp3
+GROUP    =tp
+CAPTION  =Амплитуда задания положения
+UNITS    =
+LIST     =
+ADDRESS  =0x0504
+DESCRIP  =Определяет величину приращения позиции в режиме осциллографа 1.
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =ip0
+GROUP    =ip
+CAPTION  =Источник опорного сигнала
+UNITS    =
+LIST     =0:Интерфейс USB;2:Интерфейс StepDir;4:Аналоговый интерфейс;5:Интерфейс CAN;6:Квадратурный интерфейс
+ADDRESS  =0x0017
+DESCRIP  =Определяет интерфейс, по которому осуществляется ввод задания для привода.
+MINMAX   =0;6
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =st2
+GROUP    =st
+CAPTION  =Версия ПО драйвера
+UNITS    =
+LIST     =
+ADDRESS  =0x0016
+DESCRIP  =Текущая версия программного обеспечения привода.
+MINMAX   =0;2147483647
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =ip1
+GROUP    =ip
+CAPTION  =Коэффициент веса одной дискреты
+UNITS    =
+LIST     =
+ADDRESS  =0x0018
+DESCRIP  =Определяет количество импульсов датчика, на которые необходимо повернуть вал двигателя, при получении одной дискреты по интерфейсу Step/Dir, т.е. масштаб одного импульса
+MINMAX   =-4000;4000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =10
+MACROS   =0
+---
+NAME     =tp2
+GROUP    =tp
+CAPTION  =Период опроса параметров
+UNITS    =мкс
+LIST     =
+ADDRESS  =0x0502
+DESCRIP  =Определяет интервал времени между запоминанием данных в массив в режимах 1-7.
+MINMAX   =25;25000
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =25
+MACROS   =0
+---
+NAME     =tp5
+GROUP    =tp
+CAPTION  =Период задающего воздействия
+UNITS    =мкс
+LIST     =
+ADDRESS  =0x0505
+DESCRIP  =Данный параметр определяет задержку введения задающего воздействия от начала сбора информации в режиме осциллографа 1 и 3.
+MINMAX   =25;800000
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =25
+MACROS   =1
+---
+NAME     =tp6
+GROUP    =tp
+CAPTION  =Амплитуда задания скорости
+UNITS    =об/мин
+LIST     =
+ADDRESS  =0x0506
+DESCRIP  =Определяет величину приращения скорости в режиме осциллографа 3.
+MINMAX   =-14000;14000
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ip2
+GROUP    =ip
+CAPTION  =Текущий банк программы интерпретатора
+UNITS    =Банк
+LIST     =0:0;1:1;2:2;3:3;4:4;5:5;6:6;7:7;255:Программа не выбрана;
+ADDRESS  =0x001A
+DESCRIP  =Банк, из которой загружена программа на выполнение.
+MINMAX   =0;255
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =1
+MACROS   =0
+---
+NAME     =ip3
+GROUP    =ip
+CAPTION  =Текущий банк чт/записи программ интерпретатора
+UNITS    =Банк
+LIST     =0:0;1:1;2:2;3:3;4:4;5:5;6:6;7:7;255:Программа не выбрана;
+ADDRESS  =0x001B
+DESCRIP  =
+MINMAX   =0;255
+SERVICE  =0
+READONLY =1
+DEVELOP  =1
+BITS     =16
+STEP     =1
+MACROS   =0
+---
+NAME     =ip4
+GROUP    =ip
+CAPTION  =Режим работы интерпретатора
+UNITS    =
+LIST     =0:Режим выполнения программы;1:Режим отладки;
+ADDRESS  =0x001C
+DESCRIP  =Режим работы интерпретатора
+MINMAX   =0;1
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =1
+MACROS   =0
+---
+NAME     =st3
+GROUP    =st
+CAPTION  =Уникальный идентификатор устройства
+UNITS    =
+LIST     =
+ADDRESS  =0x001E
+DESCRIP  =
+MINMAX   =0;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =ip5
+GROUP    =ip
+CAPTION  =Порт ввода вывода
+UNITS    =
+LIST     =
+ADDRESS  =0x0001D
+DESCRIP  =Старший байт содержит содержимое порта вывода, младший - состояние линий ввода.
+MINMAX   =0;65535
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ss2
+GROUP    =ss
+CAPTION  =Количество КЗ
+UNITS    =
+LIST     =
+ADDRESS  =0x001F
+DESCRIP  =Количество зафиксированных коротких замыканий
+MINMAX   =0;65535
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ss3
+GROUP    =ss
+CAPTION  =Количество превышений температуры
+UNITS    =
+LIST     =
+ADDRESS  =0x0020
+DESCRIP  =Количество зафиксированных превышений температуры
+MINMAX   =0;65535
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ss4
+GROUP    =ss
+CAPTION  =Количество перенапряжений
+UNITS    =
+LIST     =
+ADDRESS  =0x0021
+DESCRIP  =Количество зафиксированных перенапряжений
+MINMAX   =0;65535
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ss5
+GROUP    =ss
+CAPTION  =Количество недонапряжений
+UNITS    =
+LIST     =
+ADDRESS  =0x0022
+DESCRIP  =Количество зафиксированных случаев пониженного напряжений
+MINMAX   =0;65535
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ss6
+GROUP    =ss
+CAPTION  =Количество перегрузок
+UNITS    =
+LIST     =
+ADDRESS  =0x0023
+DESCRIP  =
+MINMAX   =0;65535
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ss7
+GROUP    =ss
+CAPTION  =Количество перепрогарммирований
+UNITS    =
+LIST     =
+ADDRESS  =0x0024
+DESCRIP  =
+MINMAX   =0;65535
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ss8
+GROUP    =ss
+CAPTION  =Сообщение 0
+UNITS    =
+LIST     =1:Короткое замыкание;2:Перегрев;3:Повышенное напряжение;4:Пониженное напряжение;5:Перегрузка по току;6:Произведена перезапись контроллера;
+ADDRESS  =0x0025
+DESCRIP  =Журнал последних 8 сообщений
+MINMAX   =0;65535
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ss9
+GROUP    =ss
+CAPTION  =Сообщение 1
+UNITS    =
+LIST     =1:Короткое замыкание;2:Перегрев;3:Повышенное напряжение;4:Пониженное напряжение;5:Перегрузка по току;6:Произведена перезапись контроллера;
+ADDRESS  =0x0026
+DESCRIP  =Журнал последних 8 сообщений
+MINMAX   =0;65535
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ss10
+GROUP    =ss
+CAPTION  =Сообщение 2
+UNITS    =
+LIST     =1:Короткое замыкание;2:Перегрев;3:Повышенное напряжение;4:Пониженное напряжение;5:Перегрузка по току;6:Произведена перезапись контроллера;
+ADDRESS  =0x0027
+DESCRIP  =Журнал последних 8 сообщений
+MINMAX   =0;65535
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ss11
+GROUP    =ss
+CAPTION  =Сообщение 3
+UNITS    =
+LIST     =1:Короткое замыкание;2:Перегрев;3:Повышенное напряжение;4:Пониженное напряжение;5:Перегрузка по току;6:Произведена перезапись контроллера;
+ADDRESS  =0x0028
+DESCRIP  =Журнал последних 8 сообщений
+MINMAX   =0;65535
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ss12
+GROUP    =ss
+CAPTION  =Сообщение 4
+UNITS    =
+LIST     =1:Короткое замыкание;2:Перегрев;3:Повышенное напряжение;4:Пониженное напряжение;5:Перегрузка по току;6:Произведена перезапись контроллера;
+ADDRESS  =0x0029
+DESCRIP  =Журнал последних 8 сообщений
+MINMAX   =0;65535
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ss13
+GROUP    =ss
+CAPTION  =Сообщение 5
+UNITS    =
+LIST     =1:Короткое замыкание;2:Перегрев;3:Повышенное напряжение;4:Пониженное напряжение;5:Перегрузка по току;6:Произведена перезапись контроллера;
+ADDRESS  =0x002A
+DESCRIP  =Журнал последних 8 сообщений
+MINMAX   =0;65535
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ss14
+GROUP    =ss
+CAPTION  =Сообщение 6
+UNITS    =
+LIST     =1:Короткое замыкание;2:Перегрев;3:Повышенное напряжение;4:Пониженное напряжение;5:Перегрузка по току;6:Произведена перезапись контроллера;
+ADDRESS  =0x002B
+DESCRIP  =Журнал последних 8 сообщений
+MINMAX   =0;65535
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ss15
+GROUP    =ss
+CAPTION  =Сообщение 7
+UNITS    =
+LIST     =1:Короткое замыкание;2:Перегрев;3:Повышенное напряжение;4:Пониженное напряжение;5:Перегрузка по току;6:Произведена перезапись контроллера;
+ADDRESS  =0x002C
+DESCRIP  =Журнал последних 8 сообщений
+MINMAX   =0;65535
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ip6
+GROUP    =ip
+CAPTION  =Смещение диапазона сигнала управления
+UNITS    =
+LIST     =
+ADDRESS  =0x0030
+DESCRIP  =Используется для корректировки диапазона регулирования входного сигнала (аналогового или Step\Dir). Значение 2048 соответствует нулевой скорости при подаче на вход нулевого напряжения.
+MINMAX   =0;4096
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =dd13
+GROUP    =dd
+CAPTION  =Тестовый параметр 1
+UNITS    =
+LIST     =
+ADDRESS  =0x0411
+DESCRIP  =Пока используется для индикации перехода на меандр вместо синуса. Параметр для разработчика
+MINMAX   =-65535;65535
+SERVICE  =0
+READONLY =1
+DEVELOP  =1
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =dd14
+GROUP    =dd
+CAPTION  =Тестовый параметр 2
+UNITS    =
+LIST     =
+ADDRESS  =0x0412
+DESCRIP  =Пока используется для индикации сдвига фазы
+MINMAX   =-65535;65535
+SERVICE  =0
+READONLY =1
+DEVELOP  =1
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =vp10
+GROUP    =vp
+CAPTION  =Начало резонансного диапазона 1
+UNITS    =об/мин
+LIST     =
+ADDRESS  =0x0031
+DESCRIP  =Если начало и конец диапазона равны, то диапазон не выбран.
+MINMAX   =0;8000
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =1
+---
+NAME     =vp11
+GROUP    =vp
+CAPTION  =Конец резонансного диапазона 1
+UNITS    =об/мин
+LIST     =
+ADDRESS  =0x0032
+DESCRIP  =Если начало и конец диапазона равны, то диапазон не выбран.
+MINMAX   =0;8000
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =1
+---
+NAME     =vp12
+GROUP    =vp
+CAPTION  =Начало резонансного диапазона 2
+UNITS    =об/мин
+LIST     =
+ADDRESS  =0x0033
+DESCRIP  =Если начало и конец диапазона равны, то диапазон не выбран.
+MINMAX   =0;8000
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =1
+---
+NAME     =vp13
+GROUP    =vp
+CAPTION  =Конец резонансного диапазона 2
+UNITS    =об/мин
+LIST     =
+ADDRESS  =0x0034
+DESCRIP  =Если начало и конец диапазона равны, то диапазон не выбран.
+MINMAX   =0;8000
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =1
+---
+NAME     =ip7
+GROUP    =ip
+CAPTION  =CAN адрес устройства
+UNITS    =
+LIST     =
+ADDRESS  =0x0035
+DESCRIP  =Адрес данного устройства в сети CAN
+MINMAX   =0;127
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ip8
+GROUP    =ip
+CAPTION  =CAN адрес удаленного узла
+UNITS    =
+LIST     =
+ADDRESS  =0x0036
+DESCRIP  =Адрес удаленного устройства в сети CAN, которое выступает в качестве мастера для данного устройства
+MINMAX   =0;127
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ip9
+GROUP    =ip
+CAPTION  =Режим синхронизации по CAN
+UNITS    =
+LIST     =0:Режим не выбран;1:Режим мастер;2:Режим слейв;3:Режим контурного управления;4:Синхронизация по команде SYNC;
+ADDRESS  =0x0037
+DESCRIP  =В режиме мастер привод передает текущую позицию в CAN на адрес удаленного узла.
+MINMAX   =0;4
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ip10
+GROUP    =ip
+CAPTION  =Статус шины CAN
+UNITS    =
+LIST     =0:Норма;1:Неисправности на линии;2:Ошибка передачи синхронизации слейву;3:Ошибка - подтверждение не получено.
+ADDRESS  =0x0038
+DESCRIP  =Статус 2 - устанавливается, если мастер не может передать сообщение слейву в течение ip7
+MINMAX   =0;3
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =vp14
+GROUP    =vp
+CAPTION  =Номинальная скорость
+UNITS    =об/мин
+LIST     =
+ADDRESS  =0x0039
+DESCRIP  =Скорость, начиная с которой выполняется режим ослабления поля.
+MINMAX   =0;5000
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =1
+---
+NAME     =vp15
+GROUP    =vp
+CAPTION  =Авто расчет номинальной скорости
+UNITS    =
+LIST     =1:Да;0:Нет;
+ADDRESS  =0x0040
+DESCRIP  =Автоматический расчет номинальной скорости выполняется на основе текущего напряжения питания при включении привода.
+MINMAX   =0;1
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =si1
+GROUP    =ss
+CAPTION  =Смещение датчика тока 1
+UNITS    =
+LIST     =
+ADDRESS  =0x0600
+DESCRIP  =Формула расчета I=cur1-511-si1
+MINMAX   =0;4096
+SERVICE  =0
+READONLY =0
+DEVELOP  =1
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =si2
+GROUP    =ss
+CAPTION  =Смещение датчика тока 2
+UNITS    =
+LIST     =
+ADDRESS  =0x0601
+DESCRIP  =Формула расчета I=cur2-511-si2
+MINMAX   =0;4096
+SERVICE  =0
+READONLY =0
+DEVELOP  =1
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =pp6
+GROUP    =pp
+CAPTION  =Ограничение интегральной составляющей контура позиции
+UNITS    =
+LIST     =
+ADDRESS  =0x0041
+DESCRIP  =Определяет максимальное значение, до которого может увеличиваться интегральная составляющая. По достижению этой величины интегральная составляющая удерживается константой.
+MINMAX   =0;15000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =10
+MACROS   =0
+---
+NAME     =ip11
+GROUP    =ip
+CAPTION  =Статус интерпретатора
+UNITS    =
+LIST     =0:Норма;1:Смена банка программ;2:Неизвестный параметр;3:Неизвестная команда;4:Останов;5:STATUS_UNKNOWN_AL_OP;6:STATUS_UNKNOWN_CMP_OP;7:Загрузка программы;8:STATUS_DEBUG_BREAK;9:STATUS_DEBUG_WAIT_END_OF_CMD;10:Неизвестная динамическая функция;11:Старая версия программы;12:Слишком много циклов;77:Неправильное условие;13:Не удалось найти Z метку;78:Переполнение стека;79:Попытка чтения пустого стека;
+ADDRESS  =0x0042
+DESCRIP  =0:Норма;1:Смена банка программ;2:Неизвестный параметр;3:Неизвестная команда;4:Останов;5:STATUS_UNKNOWN_AL_OP;6:STATUS_UNKNOWN_CMP_OP;7:Загрузка программы;8:STATUS_DEBUG_BREAK;9:STATUS_DEBUG_WAIT_END_OF_CMD;10:Неизвестная динамическая функция;
+MINMAX   =0;12
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =16
+STEP     =1
+MACROS   =0
+---
+NAME     =ep1
+GROUP    =ep
+CAPTION  =Режим торможения
+UNITS    =
+LIST     =0:Торможение без контроля напряжения;2:Торможение с контролем напряжения;
+ADDRESS  =0x0043
+DESCRIP  =При торможении без контроля напряжения привод перейдет в аварийное состояние в момент превышения напряжением допустимого значения, установленным в параметре ep2.
+MINMAX   =0;2
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ep2
+GROUP    =ep
+CAPTION  =Максимальное напряжение
+UNITS    =В
+LIST     =
+ADDRESS  =0x0044
+DESCRIP  =Максимальное допустимое напряжение, при котором привод должен переходить в состояние отключения.
+MINMAX   =0;280
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =0.5
+MACROS   =1
+---
+NAME     =dd15
+GROUP    =dd
+CAPTION  =Время выполнения команды интерпретатором
+UNITS    =мс
+LIST     =
+ADDRESS  =0x0413
+DESCRIP  =Определяет максимальное время, которое интерпретатор затрачивает на выполнение команды в текущей программе.
+MINMAX   =0;2147483647
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =32
+STEP     =1
+MACROS   =1
+---
+NAME     =dd16
+GROUP    =dd
+CAPTION  =Время выполнения программы интерпретатором
+UNITS    =мс
+LIST     =
+ADDRESS  =0x0414
+DESCRIP  =Определяет максимальное время, которое интерпретатор затрачивает на выполнение всей программы.
+MINMAX   =0;2147483647
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =32
+STEP     =1
+MACROS   =1
+---
+NAME     =ip12
+GROUP    =ip
+CAPTION  =Мертвая зона аналоговых входов
+UNITS    =дискрет
+LIST     =
+ADDRESS  =0x0045
+DESCRIP  =Определяет зону нечувствительности аналоговых входов привода. При ручном управлении, например, с помощью джойстика, данный параметр позволяет исключить вращение вала при задании нулевой скорости.
+MINMAX   =0;250
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =dd17
+GROUP    =dd
+CAPTION  =Аналоговый вход 0
+UNITS    =дискрет
+LIST     =
+ADDRESS  =0x0415
+DESCRIP  =
+MINMAX   =-65535;65535
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =dd18
+GROUP    =dd
+CAPTION  =Аналоговый вход 1
+UNITS    =дискрет
+LIST     =
+ADDRESS  =0x0416
+DESCRIP  =
+MINMAX   =-65535;65535
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =up0
+GROUP    =up
+CAPTION  =Переменная общего назначения 0
+UNITS    =
+LIST     =
+ADDRESS  =0x0700
+DESCRIP  =Может использоваться для общих целей. Например, для запоминания длинны оси, приводимой в движение данным приводом и т.д.
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =up1
+GROUP    =up
+CAPTION  =Переменная общего назначения 1
+UNITS    =
+LIST     =
+ADDRESS  =0x0701
+DESCRIP  =Может использоваться для общих целей. Например, для запоминания длинны оси, приводимой в движение данным приводом и т.д.
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =up2
+GROUP    =up
+CAPTION  =Переменная общего назначения 2
+UNITS    =
+LIST     =
+ADDRESS  =0x0702
+DESCRIP  =Может использоваться для общих целей. Например, для запоминания длинны оси, приводимой в движение данным приводом и т.д.
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =up3
+GROUP    =up
+CAPTION  =Переменная общего назначения 3
+UNITS    =
+LIST     =
+ADDRESS  =0x0703
+DESCRIP  =Может использоваться для общих целей. Например, для запоминания длинны оси, приводимой в движение данным приводом и т.д.
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =up4
+GROUP    =up
+CAPTION  =Переменная общего назначения 4
+UNITS    =
+LIST     =
+ADDRESS  =0x0704
+DESCRIP  =Может использоваться для общих целей. Например, для запоминания длинны оси, приводимой в движение данным приводом и т.д.
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =up5
+GROUP    =up
+CAPTION  =Переменная общего назначения 5
+UNITS    =
+LIST     =
+ADDRESS  =0x0705
+DESCRIP  =Может использоваться для общих целей. Например, для запоминания длинны оси, приводимой в движение данным приводом и т.д.
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =up6
+GROUP    =up
+CAPTION  =Переменная общего назначения 6
+UNITS    =
+LIST     =
+ADDRESS  =0x0706
+DESCRIP  =Может использоваться для общих целей. Например, для запоминания длинны оси, приводимой в движение данным приводом и т.д.
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =up7
+GROUP    =up
+CAPTION  =Переменная общего назначения 7
+UNITS    =
+LIST     =
+ADDRESS  =0x0707
+DESCRIP  =Может использоваться для общих целей. Например, для запоминания длинны оси, приводимой в движение данным приводом и т.д.
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =st4
+GROUP    =st
+CAPTION  =Тип привода
+UNITS    =
+LIST     =1:СПШ10-23xx;2:СПШ20-23xx\1000Z;4:СПШ20-23xx\2000Z;64:СПШ10-34xx;128:СПШ20-34xx\2000Z;4096:СПШ20-34xx\1000Z;8192:СПС25-80007;8193:СПС25-80016;8194:СПС25-80025;8195:СПС25-1100075;8196:СПС30-хххх;
+ADDRESS  =0x0046
+DESCRIP  =
+MINMAX   =1;65535
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =st5
+GROUP    =st
+CAPTION  =Z метка
+UNITS    =
+LIST     =0:Нет;1:Да;
+ADDRESS  =0x0047
+DESCRIP  =Наличие или отсутствие у датчика позиции канала нуливой метки
+MINMAX   =0;1
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =cp6
+GROUP    =cp
+CAPTION  =Вырабатываемый момент
+UNITS    =
+LIST     =100:100%;75:75%;50:50%;25:25%;
+ADDRESS  =0x0048
+DESCRIP  =Параметр позволяет ограничить развиваемый момент
+MINMAX   =25;100
+SERVICE  =0
+READONLY =0
+DEVELOP  =1
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ep3
+GROUP    =ep
+CAPTION  =Ток поиска фазы
+UNITS    =дискрет
+LIST     =
+ADDRESS  =0x0051
+DESCRIP  =Определяет уровень тока, который устанавливается при поиске фазы. Ток задается в дискретах.
+MINMAX   =0;32000
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =1
+MACROS   =0
+---
+NAME     =ep4
+GROUP    =ep
+CAPTION  =Время поиска фазы
+UNITS    =дискрет
+LIST     =
+ADDRESS  =0x0052
+DESCRIP  =Определяет время, в течение которого будет удерживаться ток ep3 при поиске фазы.
+MINMAX   =0;32000
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =1
+MACROS   =0
+---
+NAME     =ep5
+GROUP    =ep
+CAPTION  =Максимальная температура
+UNITS    =град.
+LIST     =
+ADDRESS  =0x0054
+DESCRIP  =Указывает максимальную допустимую температуру внутри корпуса
+MINMAX   =25;85
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =1
+MACROS   =0
+---
+NAME     =cp7
+GROUP    =cp
+CAPTION  =Модуляция ШИМ сигнала
+UNITS    =
+LIST     =0:Выключена;1:Включена;
+ADDRESS  =0x0053
+DESCRIP  =Разрешает/запрещает подачу силового напряжения на обмотки двигателя
+MINMAX   =0;1
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ep6
+GROUP    =ep
+CAPTION  =Период поиска фазы
+UNITS    =
+LIST     =0:Однопериодный;1:1;2:2;3:3;
+ADDRESS  =0x0056
+DESCRIP  =Один из трех периодов, во время которого привод может выполнять поиск фазы. В результате удается избежать перегрузки источника питания и выполнить корректный поиск фазы в приводах, между которыми имеется жесткая механическая связь.
+MINMAX   =0;3
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =1
+MACROS   =0
+---
+NAME     =up8
+GROUP    =up
+CAPTION  =X
+UNITS    =
+LIST     =
+ADDRESS  =0x0708
+DESCRIP  =Переменная, используемая в ПЛК
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =1
+MACROS   =0
+---
+NAME     =up9
+GROUP    =up
+CAPTION  =Y
+UNITS    =
+LIST     =
+ADDRESS  =0x0709
+DESCRIP  =Переменная, используемая в ПЛК
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =1
+MACROS   =0
+---
+NAME     =up10
+GROUP    =up
+CAPTION  =Z
+UNITS    =
+LIST     =
+ADDRESS  =0x070A
+DESCRIP  =Переменная, используемая в ПЛК
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =1
+MACROS   =0
+---
+NAME     =up11
+GROUP    =up
+CAPTION  =EEPROM массив
+UNITS    =
+LIST     =
+ADDRESS  =0x070B
+DESCRIP  =User EEPROM massive
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =1
+BITS     =32
+STEP     =1
+MACROS   =0
+---
+NAME     =up12
+GROUP    =up
+CAPTION  =EEPROM массив метаданных
+UNITS    =
+LIST     =
+ADDRESS  =0x070C
+DESCRIP  =Metadata massive of params of motor
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =1
+BITS     =32
+STEP     =1
+MACROS   =0
+---
+NAME     =dd22
+GROUP    =dd
+CAPTION  =Максимальное отклонение от траектории
+UNITS    =дискрет
+LIST     =
+ADDRESS  =0x0420
+DESCRIP  =Определяет максимальную ошибку контура позиции зафиксированную при прохождении траектории.
+MINMAX   =0;65535
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ip13
+GROUP    =ip
+CAPTION  =Ограничитель левый
+UNITS    =имп.
+LIST     =
+ADDRESS  =0x0057
+DESCRIP  =Программный ограничитель позиции,  при достижении которой привод останавливается и воспринимает команду управления только в противоположную сторону.
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =ip14
+GROUP    =ip
+CAPTION  =Ограничитель правый
+UNITS    =имп.
+LIST     =
+ADDRESS  =0x0058
+DESCRIP  =Программный ограничитель позиции,  при достижении которой привод останавливается и воспринимает команду управления только в противоположную сторону.
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =dd23
+GROUP    =dd
+CAPTION  =Статус G декодера
+UNITS    =
+LIST     =0:Останов;1:Начало;2:Отработка;3:Ожидание подтверждений;4:Ошибка;5;Выход в нуль
+ADDRESS  =0x0421
+DESCRIP  =
+MINMAX   =0;5
+SERVICE  =0
+READONLY =1
+DEVELOP  =1
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =dd24
+GROUP    =dd
+CAPTION  =Текущий кадр G декодера
+UNITS    =
+LIST     =
+ADDRESS  =0x0422
+DESCRIP  =
+MINMAX   =0;65535
+SERVICE  =0
+READONLY =1
+DEVELOP  =1
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ip15
+GROUP    =ip
+CAPTION  =Скорость обмена по шине CAN
+UNITS    =
+LIST     =500:500 кБит/сек;1000:1000 кБит/сек;
+ADDRESS  =0x0059
+DESCRIP  =Определяет скорость обмена по шине CAN. При этом допустимая скорость определяется дальностью линии связи. На скорость 1000кБит максимальная дальность 60м, 500кБит - 120м
+MINMAX   =50;1000
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =cp8
+GROUP    =cp
+CAPTION  =Частота ШИМ сигнала
+UNITS    =кГц
+LIST     =2500:40кГц;5000:20кГц;6250:16кГц;12500:8кГц;25000:4кГц;
+ADDRESS  =0x0060
+DESCRIP  =Определяет частоту ШИМ сигнала и частоту работы контура тока. Влияет на КПД силовой части привода, а также качество работы контура тока. Для приводов серии СПШ частота всегда 40кГц. Влияет на параметр cp4.
+MINMAX   =-65535;65535
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ip16
+GROUP    =ip
+CAPTION  =USB2CAN конвертор
+UNITS    =
+LIST     =0:Выкл;2:Вкл;
+ADDRESS  =0x0061
+DESCRIP  =Данная функция предназначена для облегчения подключения к группе приводов СПШ/СПС, которые объединены в рамках системы в одну сеть CAN. Чтобы работать со всеми приводами сети достаточно подключиться только к одному приводу по USB.
+MINMAX   =0;2
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =up13
+GROUP    =up
+CAPTION  =Значение текущего элемента EEPROM массива
+UNITS    =
+LIST     =
+ADDRESS  =0x070D
+DESCRIP  =Отображает значение текущего элемента массива энергонезависимой памяти данных общего назначения.
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =1
+MACROS   =0
+---
+NAME     =up14
+GROUP    =up
+CAPTION  =Индекс текущего элемента EEPROM массива
+UNITS    =
+LIST     =
+ADDRESS  =0x070E
+DESCRIP  =Отображает индекс текущего элемента массива энергонезависимой памяти данных общего назначения.
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =1
+MACROS   =0
+---
+NAME     =up15
+GROUP    =up
+CAPTION  =Значение счетчика импульсов
+UNITS    =
+LIST     =
+ADDRESS  =0x070F
+DESCRIP  =Отображает значение счетчика импульсов, которые приходят на порты IN0, IN1, по протоколу Step\Dir или по квадратурному протоколу. Счетчик активизирован только при выборе соответствующего протокола.
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =1
+MACROS   =0
+---
+NAME     =up16
+GROUP    =up
+CAPTION  =Среднее значение заданного тока
+UNITS    =
+LIST     =
+ADDRESS  =0x0710
+DESCRIP  =Величина пропорциональна вырабатываемому приводом моменту, используется в программах для определения развиваемого момента.
+MINMAX   =-65535;65535
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =16
+STEP     =1
+MACROS   =0
+---
+NAME     =ip17
+GROUP    =ip
+CAPTION  =Таймаут передачи синхронизации слейву
+UNITS    =мксек
+LIST     =
+ADDRESS  =0x0800
+DESCRIP  =Временной интервал, в течение которого мастер обязан передать синхронизацию слейву. По истечении этого времени параметр ip10 будет установлен в значение 1 или 2.
+MINMAX   =0;10000
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =25
+MACROS   =0
+---
+NAME     =ip18
+GROUP    =ip
+CAPTION  =Таймаут передачи подтверждения мастеру от слейва
+UNITS    =мксек
+LIST     =
+ADDRESS  =0x0801
+DESCRIP  =Временной интервал, в течение которого слейв обязан передать подтверждение на команду синхронизации мастеру. По истечении этого времени параметр ip10 будет установлен в значение 3.
+MINMAX   =0;10000
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =25
+MACROS   =0
+---
+NAME     =st6
+GROUP    =st
+CAPTION  =Нулевой сектор сигналов UVW
+UNITS    =
+LIST     =1:1;2:2;3:3;4:4;5:5;6:6;170:Выполнить инициализацию;85:Не использовать UVW треки;
+ADDRESS  =0x0802
+DESCRIP  =Определяет сектор датчика UVW, в котором находится нуль двигателя. Если установить значение "Выполнить инициализацию", то при следующем запуске автоматически будет выполнена операция поиска сектора и смещения внутри сектора
+MINMAX   =0;170
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =st7
+GROUP    =st
+CAPTION  =Сдвиг нуля внутри сектора сигналов UVW
+UNITS    =
+LIST     =
+ADDRESS  =0x0804
+DESCRIP  =Определяет смещение внутри сектора датчика UVW, в котором находится нуль двигателя. Если установить значение "Выполнить инициализацию", то при следующем запуске автоматически будет выполнена операция поиска сектора и смещения внутри сектора
+MINMAX   =0;80000
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =io0
+GROUP    =io
+CAPTION  =Порт ввода 0
+UNITS    =
+LIST     =
+ADDRESS  =0x0805
+DESCRIP  =Значение порта ввода 0
+MINMAX   =0;1
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =io1
+GROUP    =io
+CAPTION  =Порт ввода 1
+UNITS    =
+LIST     =
+ADDRESS  =0x0806
+DESCRIP  =Значение порта ввода 1
+MINMAX   =0;1
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =io2
+GROUP    =io
+CAPTION  =Порт ввода 2
+UNITS    =
+LIST     =
+ADDRESS  =0x0807
+DESCRIP  =Значение порта ввода 2
+MINMAX   =0;1
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =io3
+GROUP    =io
+CAPTION  =Порт ввода 3
+UNITS    =
+LIST     =
+ADDRESS  =0x0808
+DESCRIP  =Значение порта ввода 3
+MINMAX   =0;1
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =io4
+GROUP    =io
+CAPTION  =Порт вывода 0
+UNITS    =
+LIST     =
+ADDRESS  =0x0809
+DESCRIP  =Значение порта вывода 0
+MINMAX   =0;1
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =io5
+GROUP    =io
+CAPTION  =Порт вывода 1
+UNITS    =
+LIST     =
+ADDRESS  =0x080A
+DESCRIP  =Значение порта вывода 1
+MINMAX   =0;1
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =io6
+GROUP    =io
+CAPTION  =PWM0
+UNITS    =
+LIST     =
+ADDRESS  =0x080B
+DESCRIP  =Скваженность ШИМ сигнала, выводимого на порт вывода 0. Порт необходимо соответствующим образом настроить с помощью параметра: Режим работы порта вывода.
+MINMAX   =0;160
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =1
+MACROS   =0
+---
+NAME     =io7
+GROUP    =io
+CAPTION  =PWM1
+UNITS    =
+LIST     =
+ADDRESS  =0x080C
+DESCRIP  =Скваженность ШИМ сигнала, выводимого на порт вывода 1. Порт необходимо соответствующим образом настроить с помощью параметра: Режим работы порта вывода.
+MINMAX   =0;160
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =1
+MACROS   =0
+---
+NAME     =io8
+GROUP    =io
+CAPTION  =Режим порта ввода 0
+UNITS    =
+LIST     =0:Порт ввода общего назначения;1:Порт ввода в режиме квадратурного счетчика;2:Порт ввода в режиме счетчика Step/dir;
+ADDRESS  =0x080D
+DESCRIP  =Определяет режим работы порта ввода.
+MINMAX   =0;3
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =1
+MACROS   =0
+---
+NAME     =io9
+GROUP    =io
+CAPTION  =Режим порта ввода 1
+UNITS    =
+LIST     =0:Порт ввода общего назначения;1:Порт ввода в режиме квадратурного счетчика;2:Порт ввода в режиме счетчика Step/dir;
+ADDRESS  =0x080E
+DESCRIP  =Определяет режим работы порта ввода.
+MINMAX   =0;3
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =1
+MACROS   =0
+---
+NAME     =io10
+GROUP    =io
+CAPTION  =Режим порта ввода 2
+UNITS    =
+LIST     =0:Порт ввода общего назначения;1:Порт ввода в режиме квадратурного счетчика;2:Порт ввода в режиме счетчика Step/dir;
+ADDRESS  =0x080F
+DESCRIP  =Определяет режим работы порта ввода.
+MINMAX   =0;3
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =1
+MACROS   =0
+---
+NAME     =io11
+GROUP    =io
+CAPTION  =Режим порта ввода 3
+UNITS    =
+LIST     =0:Порт ввода общего назначения;1:Порт ввода в режиме квадратурного счетчика;2:Порт ввода в режиме счетчика Step/dir;
+ADDRESS  =0x0810
+DESCRIP  =Определяет режим работы порта ввода.
+MINMAX   =0;3
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =1
+MACROS   =0
+---
+NAME     =io12
+GROUP    =io
+CAPTION  =Режим порта вывода 0
+UNITS    =
+LIST     =0:Порт вывода общего назначения;1:Порт вывода в режиме ШИМ;
+ADDRESS  =0x0811
+DESCRIP  =Определяет режим работы порта вывода.
+MINMAX   =0;3
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =1
+MACROS   =0
+---
+NAME     =io13
+GROUP    =io
+CAPTION  =Режим порта вывода 1
+UNITS    =
+LIST     =0:Порт вывода общего назначения;1:Порт вывода в режиме ШИМ;
+ADDRESS  =0x0812
+DESCRIP  =Определяет режим работы порта вывода.
+MINMAX   =0;3
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =1
+MACROS   =0
+---
+NAME     =io14
+GROUP    =io
+CAPTION  =Счетчик импульсов
+UNITS    =
+LIST     =
+ADDRESS  =0x070F
+DESCRIP  =Аппаратный счетчик импульсов,  которые приходят на входы In0 и In1. При этом порты должны быть настроены на соответствующий интерфейс (см. параметры io8 и io9).
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =32
+STEP     =1
+MACROS   =0
+---
+NAME     =dd25
+GROUP    =dd
+CAPTION  =UVW треки
+UNITS    =
+LIST     =
+ADDRESS  =0x0423
+DESCRIP  =Сигнал, считанный с UVW треков энкодера
+MINMAX   =0;16
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =st8
+GROUP    =st
+CAPTION  =Тип энкодера
+UNITS    =
+LIST     =0:Инкрементальный;1:Абсолютный;
+ADDRESS  =0x0062
+DESCRIP  =
+MINMAX   =0;1
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =1
+MACROS   =0
+---
+NAME     =vp17
+GROUP    =vp
+CAPTION  =Рывок
+UNITS    =
+LIST     =
+ADDRESS  =0x0063
+DESCRIP  =Ограничивает вторую производную скорости. Параметр вступает в силу только при установки vp9 в значение 4
+MINMAX   =1;21470
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =10
+MACROS   =0
+---
+NAME     =cp9
+GROUP    =cp
+CAPTION  =Допустимая перегрузка
+UNITS    =А2сек
+LIST     =
+ADDRESS  =0x0814
+DESCRIP  =Ограничение выделяемой мощности обмотками двигателя. Предотвращает повреждения обмоток. Реализует защитную функцию I2t
+MINMAX   =0;350
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =16
+MACROS   =0
+---
+NAME     =cp10
+GROUP    =cp
+CAPTION  =Номинальный ток
+UNITS    =А
+LIST     =
+ADDRESS  =0x0815
+DESCRIP  =
+MINMAX   =0;850
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =16
+MACROS   =1
+---
+NAME     =dd26
+GROUP    =dd
+CAPTION  =Текущая перегрузка
+UNITS    =А2сек
+LIST     =
+ADDRESS  =0x0424
+DESCRIP  =Накомпленнае мощность, превышающая номинальные характеристики двигателя
+MINMAX   =0;100
+SERVICE  =1
+READONLY =1
+DEVELOP  =0
+BITS     =32
+STEP     =16
+MACROS   =0
+---
+NAME     =dd27
+GROUP    =dd
+CAPTION  =Ток в обмотке 3
+UNITS    =А
+LIST     =
+ADDRESS  =0x0425
+DESCRIP  =Показывает ток, протекающий в обмотке двигателя. Параметр действителен только для СПС.
+MINMAX   =-5;5
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =16
+STEP     =0.05
+MACROS   =1
+---
+NAME     =dd28
+GROUP    =dd
+CAPTION  =Заданный ток в обмотке 3
+UNITS    =А
+LIST     =
+ADDRESS  =0x0426
+DESCRIP  =Заданный ток в обмотке 3. Действителен только для приводов серии СПС.
+MINMAX   =-2047;2047
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =1
+---
+NAME     =dd29
+GROUP    =dd
+CAPTION  =Ток потребления двигателя
+UNITS    =А
+LIST     =
+ADDRESS  =0x0427
+DESCRIP  =Параметр действителен только для СПС.
+MINMAX   =-5;5
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =16
+STEP     =0.05
+MACROS   =1
+---
+NAME     =pd1
+GROUP    =pd
+CAPTION  =Зона нечувствительности
+UNITS    =
+LIST     =
+ADDRESS  =0x0A01
+DESCRIP  =Параметр настройки ПИД-регулятора
+MINMAX   =0;10000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =pd2
+GROUP    =pd
+CAPTION  =Максимальная ошибка
+UNITS    =
+LIST     =
+ADDRESS  =0x0A02
+DESCRIP  =Параметр настройки ПИД-регулятора
+MINMAX   =0;524287
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =pd3
+GROUP    =pd
+CAPTION  =Пропорциональный коэффициент
+UNITS    =
+LIST     =
+ADDRESS  =0x0A03
+DESCRIP  =Параметр настройки ПИД-регулятора
+MINMAX   =0;10000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =pd4
+GROUP    =pd
+CAPTION  =Интегральный коэффициент
+UNITS    =
+LIST     =
+ADDRESS  =0x0A04
+DESCRIP  =Параметр настройки ПИД-регулятора
+MINMAX   =0;10000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =pd5
+GROUP    =pd
+CAPTION  =Дифференциальный коэффициент
+UNITS    =
+LIST     =
+ADDRESS  =0x0A05
+DESCRIP  =Параметр настройки ПИД-регулятора
+MINMAX   =0;10000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =pd6
+GROUP    =pd
+CAPTION  =Ограничение интегральной составляющей
+UNITS    =
+LIST     =
+ADDRESS  =0x0A06
+DESCRIP  =Параметр настройки ПИД-регулятора
+MINMAX   =0;100000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =pd7
+GROUP    =pd
+CAPTION  =Ограничение дифференциальной составляющей
+UNITS    =
+LIST     =
+ADDRESS  =0x0A07
+DESCRIP  =Параметр настройки ПИД-регулятора
+MINMAX   =0;100000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =pd8
+GROUP    =pd
+CAPTION  =Ограничение форсирующей составляющей 1го порядка
+UNITS    =
+LIST     =
+ADDRESS  =0x0A08
+DESCRIP  =Параметр настройки ПИД-регулятора
+MINMAX   =0;524287
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =pd9
+GROUP    =pd
+CAPTION  =Ограничение форсирующей составляющей 2го порядка
+UNITS    =
+LIST     =
+ADDRESS  =0x0A09
+DESCRIP  =Параметр настройки ПИД-регулятора
+MINMAX   =0;524287
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =pd10
+GROUP    =pd
+CAPTION  =Коэффициент форсирующей составляющей 0го порядка
+UNITS    =
+LIST     =
+ADDRESS  =0x0A0A
+DESCRIP  =Параметр настройки ПИД-регулятора
+MINMAX   =0;10000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =pd11
+GROUP    =pd
+CAPTION  =Коэффициент форсирующей составляющей 1го порядка
+UNITS    =
+LIST     =
+ADDRESS  =0x0A0B
+DESCRIP  =Параметр настройки ПИД-регулятора
+MINMAX   =0;10000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =pd12
+GROUP    =pd
+CAPTION  =Коэффициент форсирующей составляющей 2го порядка
+UNITS    =
+LIST     =
+ADDRESS  =0x0A0C
+DESCRIP  =Параметр настройки ПИД-регулятора
+MINMAX   =0;10000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =pd13
+GROUP    =pd
+CAPTION  =Смещение сигнала управления
+UNITS    =
+LIST     =
+ADDRESS  =0x0A0D
+DESCRIP  =Параметр настройки ПИД-регулятора
+MINMAX   =-524286;524287
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =pd14
+GROUP    =pd
+CAPTION  =Ограничение выходного сигнала
+UNITS    =
+LIST     =
+ADDRESS  =0x0A0E
+DESCRIP  =Параметр настройки ПИД-регулятора
+MINMAX   =0;524287
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =pd15
+GROUP    =pd
+CAPTION  =Задание регулятора
+UNITS    =
+LIST     =
+ADDRESS  =0x0A0F
+DESCRIP  =Параметр настройки ПИД-регулятора
+MINMAX   =-524286;524287
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =pd16
+GROUP    =pd
+CAPTION  =Обратная связь
+UNITS    =
+LIST     =
+ADDRESS  =0x0A10
+DESCRIP  =Параметр настройки ПИД-регулятора
+MINMAX   =-524286;524287
+SERVICE  =1
+READONLY =1
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =pd17
+GROUP    =pd
+CAPTION  =Ошибка
+UNITS    =
+LIST     =
+ADDRESS  =0x0A11
+DESCRIP  =Параметр настройки ПИД-регулятора
+MINMAX   =-524286;524287
+SERVICE  =1
+READONLY =1
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =pp7
+GROUP    =pp
+CAPTION  =Ограничение форсирующей составляющей 1го порядка
+UNITS    =
+LIST     =
+ADDRESS  =0x0A12
+DESCRIP  =Параметр настройки ПИД-регулятора
+MINMAX   =0;524287
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =10
+MACROS   =0
+---
+NAME     =pp8
+GROUP    =pp
+CAPTION  =Ограничение форсирующей составляющей 2го порядка
+UNITS    =
+LIST     =
+ADDRESS  =0x0A13
+DESCRIP  =Параметр настройки ПИД-регулятора
+MINMAX   =0;524287
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =10
+MACROS   =0
+---
+NAME     =pp9
+GROUP    =pp
+CAPTION  =Коэффициент форсирующей составляющей 1го порядка
+UNITS    =
+LIST     =
+ADDRESS  =0x0A14
+DESCRIP  =Параметр настройки ПИД-регулятора
+MINMAX   =0;100000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =10
+MACROS   =0
+---
+NAME     =pp10
+GROUP    =pp
+CAPTION  =Коэффициент форсирующей составляющей 2го порядка
+UNITS    =
+LIST     =
+ADDRESS  =0x0A15
+DESCRIP  =Параметр настройки ПИД-регулятора
+MINMAX   =0;100000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =10
+MACROS   =0
+---
+NAME     =vp18
+GROUP    =vp
+CAPTION  =Зона нечувствительности входного сигнала
+UNITS    =
+LIST     =
+ADDRESS  =0x0A16
+DESCRIP  =Параметр настройки ПИ-регулятора контура скорости
+MINMAX   =0;60000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =vp19
+GROUP    =vp
+CAPTION  =Максимальная ошибка
+UNITS    =
+LIST     =
+ADDRESS  =0x0A17
+DESCRIP  =Параметр настройки ПИ-регулятора контура скорости
+MINMAX   =0;60000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =vp20
+GROUP    =vp
+CAPTION  =Ограничение форсирующей связи 1го порядка
+UNITS    =
+LIST     =
+ADDRESS  =0x0A18
+DESCRIP  =Параметр настройки ПИ-регулятора контура скорости
+MINMAX   =0;524287
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =vp21
+GROUP    =vp
+CAPTION  =Ограничение форсирующей связи 2го порядка
+UNITS    =
+LIST     =
+ADDRESS  =0x0A19
+DESCRIP  =Параметр настройки ПИ-регулятора контура скорости
+MINMAX   =0;524287
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =vp22
+GROUP    =vp
+CAPTION  =Коэффициент форсирующей связи 0го порядка
+UNITS    =
+LIST     =
+ADDRESS  =0x0A1A
+DESCRIP  =Параметр настройки ПИ-регулятора контура скорости
+MINMAX   =0;60000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =vp23
+GROUP    =vp
+CAPTION  =Коэффициент форсирующей связи 1го порядка
+UNITS    =
+LIST     =
+ADDRESS  =0x0A1B
+DESCRIP  =Параметр настройки ПИ-регулятора контура скорости
+MINMAX   =0;60000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =vp24
+GROUP    =vp
+CAPTION  =Коэффициент форсирующей связи 2го порядка
+UNITS    =
+LIST     =
+ADDRESS  =0x0A1C
+DESCRIP  =Параметр настройки ПИ-регулятора контура скорости
+MINMAX   =0;60000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =st9
+GROUP    =st
+CAPTION  =Линейный энкодер
+UNITS    =
+LIST     =0:Нет;1:Да;
+ADDRESS  =0x0816
+DESCRIP  =Если параметр установлен в Да, то будет использоваться внешний по отношению к приводу линейный энкодер для замыкания контура позиции. При этом контуры тока и скорости будут работать, по прежнему, от внутреннего энкодера.
+MINMAX   =0;1
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =st10
+GROUP    =st
+CAPTION  =Разрешение линейного энкодера
+UNITS    =Дискрет
+LIST     =
+ADDRESS  =0x0817
+DESCRIP  =Разрешение линейного энкодера на оборот вала двигателя
+MINMAX   =-524286;524286
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =dd30
+GROUP    =dd
+CAPTION  =Разница между внешним и внутренним энкодерами
+UNITS    =Дискрет
+LIST     =
+ADDRESS  =0x0428
+DESCRIP  =Разница между внешним и внутренним энкодерами с приведением к разрешению внутреннего
+MINMAX   =-524286;524286
+SERVICE  =1
+READONLY =1
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =ss16
+GROUP    =ss
+CAPTION  =Счетчик потерь синхронизации
+UNITS    =
+LIST     =
+ADDRESS  =0x0818
+DESCRIP  =Показывает сколько было потеряно команд SYNC=0x02 по шине CAN. Счетчик работает только, если выбран один из возможных режимов синхронизации.
+MINMAX   =0;65535
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ss17
+GROUP    =ss
+CAPTION  =Счетчик потерь команд управления
+UNITS    =
+LIST     =
+ADDRESS  =0x0819
+DESCRIP  =Показывает сколько было потеряно команд CAN_POS_COM=0x08 по шине CAN. Счетчик работает только, если выбран один из возможных режимов синхронизации.
+MINMAX   =0;65535
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ss18
+GROUP    =ss
+CAPTION  =Счетчик получения неизвестных команд
+UNITS    =
+LIST     =
+ADDRESS  =0x081A
+DESCRIP  =Показывает сколько было получено неизвестных команд по шине CAN, которые помешали прохождению команд управления. Счетчик работает только, если выбран один из возможных режимов синхронизации.
+MINMAX   =0;65535
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =pd18
+GROUP    =pd
+CAPTION  =Коэффициент ФНЧ входного сигнала
+UNITS    =
+LIST     =
+ADDRESS  =0x0A1D
+DESCRIP  =Параметр настройки ПИД-регулятора
+MINMAX   =0;1
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =pd19
+GROUP    =pd
+CAPTION  =Коэффициент ФНЧ сигнала обратной связи
+UNITS    =
+LIST     =
+ADDRESS  =0x0A1E
+DESCRIP  =Параметр настройки ПИД-регулятора
+MINMAX   =0;1
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =ep7
+GROUP    =ep
+CAPTION  =Функция контроля зазора
+UNITS    =
+LIST     =0:ВЫКЛ;90:ВКЛ;
+ADDRESS  =0x081B
+DESCRIP  =Включение данной автоматически запускает внутреннюю программу контроля расстояния между инструментом и обрабатываемым листом.
+MINMAX   =0;90
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =1
+MACROS   =0
+---
+NAME     =pp11
+GROUP    =pp
+CAPTION  =Коэффициент микроинтерполяции
+UNITS    =
+LIST     =1:1;2:2;3:3;4:4;5:5;
+ADDRESS  =0x081C
+DESCRIP  =Коэффициент микроинтерполяции определяет кратность соотношения частот квантования СЧПУ и контура позиции привода. Коэффициент может принимать только значения 1, 2, 3, 4, 5. Если коэффициент равен 1, то частоты СЧПУ и привода равны.
+MINMAX   =1;5
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =10
+MACROS   =0
+---
+NAME     =ip19
+GROUP    =ip
+CAPTION  =Данные CAN собщения 0
+UNITS    =
+LIST     =
+ADDRESS  =0x081D
+DESCRIP  =4 младших байта последнего полученного CAN собщения
+MINMAX   =-2147483637;2147483646
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =ip20
+GROUP    =ip
+CAPTION  =Данные CAN собщения 1
+UNITS    =
+LIST     =
+ADDRESS  =0x081E
+DESCRIP  =4 старших байта последнего полученного CAN собщения
+MINMAX   =-2147483637;2147483646
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =dd31
+GROUP    =dd
+CAPTION  =Смещение фазы ослабления поля
+UNITS    =
+LIST     =
+ADDRESS  =0x0429
+DESCRIP  =
+MINMAX   =0;0
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =vp25
+GROUP    =vp
+CAPTION  =Коэффициент ФНЧ входного сигнала
+UNITS    =
+LIST     =
+ADDRESS  =0x081F
+DESCRIP  =Коэффициент ФНЧ входного сигнала контура скорости
+MINMAX   =0;1
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =vp26
+GROUP    =vp
+CAPTION  =Коэффициент ФНЧ сигнала обратной связи
+UNITS    =
+LIST     =
+ADDRESS  =0x0820
+DESCRIP  =Коэффициент ФНЧ сигнала обратной связи контура скорости
+MINMAX   =0;1
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =up17
+GROUP    =up
+CAPTION  =Переменная общего назначения 8
+UNITS    =
+LIST     =
+ADDRESS  =0x0711
+DESCRIP  =Может использоваться для общих целей. ВНИМАНИЕ! Данная переменная не записывается в энергонезависимую память.
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =up18
+GROUP    =up
+CAPTION  =Переменная общего назначения 9
+UNITS    =
+LIST     =
+ADDRESS  =0x0712
+DESCRIP  =Может использоваться для общих целей. ВНИМАНИЕ! Данная переменная не записывается в энергонезависимую память.
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =up19
+GROUP    =up
+CAPTION  =Переменная общего назначения 10
+UNITS    =
+LIST     =
+ADDRESS  =0x0713
+DESCRIP  =
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =up20
+GROUP    =up
+CAPTION  =Переменная общего назначения 11
+UNITS    =
+LIST     =
+ADDRESS  =0x0714
+DESCRIP  =
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =up21
+GROUP    =up
+CAPTION  =Переменная общего назначения 12
+UNITS    =
+LIST     =
+ADDRESS  =0x0715
+DESCRIP  =Может использоваться для общих целей. ВНИМАНИЕ! Данная переменная не записывается в энергонезависимую память.
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =up22
+GROUP    =up
+CAPTION  =Переменная общего назначения 13
+UNITS    =
+LIST     =
+ADDRESS  =0x0716
+DESCRIP  =Может использоваться для общих целей. ВНИМАНИЕ! Данная переменная не записывается в энергонезависимую память.
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =up23
+GROUP    =up
+CAPTION  =Переменная общего назначения  14
+UNITS    =
+LIST     =
+ADDRESS  =0x0717
+DESCRIP  =Может использоваться для общих целей. ВНИМАНИЕ! Данная переменная не записывается в энергонезависимую память.
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =up24
+GROUP    =up
+CAPTION  =Переменная общего назначения 15
+UNITS    =
+LIST     =
+ADDRESS  =0x0718
+DESCRIP  =Может использоваться для общих целей. ВНИМАНИЕ! Данная переменная не записывается в энергонезависимую память.
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =dd32
+GROUP    =dd
+CAPTION  =Задержка синхронизации
+UNITS    =Наносекунд
+LIST     =
+ADDRESS  =0x042A
+DESCRIP  =Время между приемом команды упарвления и команды синхронизации. Параметр действителен только для приоводов с интерфейсом упарвления EtherCAT и при активизации управления от СЧПУ.
+MINMAX   =0;0
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =cp11
+GROUP    =cp
+CAPTION  =Коэффициент ФНЧ входного сигнала
+UNITS    =
+LIST     =
+ADDRESS  =0x0821
+DESCRIP  =Коэффициент ФНЧ входного сигнала контура тока.
+MINMAX   =0;1
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =cp12
+GROUP    =cp
+CAPTION  =Коэффициент ФНЧ сигнала ОС
+UNITS    =
+LIST     =
+ADDRESS  =0x0822
+DESCRIP  =Коэффициент ФНЧ сигнала обратной связи контура тока.
+MINMAX   =0;1
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =st11
+GROUP    =st
+CAPTION  =Разрешение на полюс двигателя
+UNITS    =дискрет
+LIST     =
+ADDRESS  =0x0823
+DESCRIP  =Формуля для расчета:
+MINMAX   =1000;2098176
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =st12
+GROUP    =st
+CAPTION  =Коэффициент деления энкодера
+UNITS    =
+LIST     =
+ADDRESS  =0x0824
+DESCRIP  =Уменьшает разрешение датчика позиции (энкодера) в 2 или 4 раза. Если st12=1, то разрешение энкодера не уменьшается и соответствует физическому разрешению, выдаваемому самим датчиком.
+MINMAX   =1;4
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =st13
+GROUP    =st
+CAPTION  =Инвертированные сигналы UVW
+UNITS    =
+LIST     =0:Нет;21930:Да;
+ADDRESS  =0x0825
+DESCRIP  =UVW треки должны следовать в следующем порядке: 2, 3, 1, 5, 4, 6. Для таких датчиков st13=Нет. В некоторых датчиках сигналы идут с инверсией, в этом случае последовательность: 2, 6, 4, 5, 1, 3. Для таких датчиков st13=Да.
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =dd33
+GROUP    =dd
+CAPTION  =Кол-во импульсов на сектор UVW сигнала
+UNITS    =имп.
+LIST     =
+ADDRESS  =0x042B
+DESCRIP  =Кол-во импульсов датчика позиции, приходящееся на текущий сектор UVW сигнала.
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =dd34
+GROUP    =dd
+CAPTION  =Ток в роторной системе координат
+UNITS    =Дискрет
+LIST     =
+ADDRESS  =0x042C
+DESCRIP  =Ток, пересчитанный в роторную систему координат. Данный сигнал является обратной связью на задание ddd2
+MINMAX   =-2147483647;2147483647
+SERVICE  =1
+READONLY =1
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =st14
+GROUP    =st
+CAPTION  =Автоматический поиск фазы
+UNITS    =
+LIST     =0:Фаза не найдена;170:Запрос поиска фазы;171:Ожидание завершения поиска фазы;172:Ожидаем вращения в +;173:Ожидаем вращения в -;174:Ошибка поиска;175:Поиск выполнен успешно;
+ADDRESS  =0x0826
+DESCRIP  =Параметр используется для отображения текущего состояния поиска фазы в автоматическом режиме. Поиск фазы позволяет настроить сервоусилитель на конкретный экземпляр двигателя.
+MINMAX   =0;175
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =16
+STEP     =0
+MACROS   =0
+
+//-------------------------------------------------------------
+//МАКРОСЫ
+//-------------------------------------------------------------
+Functions
+
+
+macros cp3
+  ON_READ
+  READ cp3
+  cp3=cp3*5/2047
+  RETURN cp3
+  ON_WRITE
+  cp3=val*2047/5
+  WRITE cp3
+end
+
+
+macros cp4
+  ON_READ
+  READ cp4
+  cp4=cp4*5/2500
+  RETURN cp4
+  ON_WRITE
+  cp4=val*2500/5
+  WRITE cp4
+end
+
+
+macros vp5 ОТКЛЮЧЕНО
+  ON_READ
+  READ vp5
+  vp5=vp5*2
+  RETURN vp5
+  ON_WRITE
+  vp5=val/2
+  WRITE vp5
+end
+
+
+macros vp6
+  ON_READ
+  READ vp6
+  if vp4=0
+  READ vp4
+  fi
+  vp6=vp6/vp4
+  RETURN vp6
+  ON_WRITE
+  if vp4=0
+  READ vp4
+  fi
+  vp6=val*vp4
+  WRITE vp6
+  ON_ERROR
+  vp6=100000000000000
+  RETURN vp6
+end
+
+
+macros vp8 ОТКЛЮЧЕНО
+  ON_READ
+  READ vp8
+  if st1=0
+  READ st1
+  fi
+  if vp4=0
+  READ vp4
+  fi
+  if vp3=0
+  READ vp3
+  fi
+  vp8=round(60*vp8*vp4/(st1*vp3))
+  RETURN vp8
+  ON_WRITE
+  if st1=0
+  READ st1
+  fi
+  if vp4=0
+  READ vp4
+  fi
+  if vp3=0
+  READ vp3
+  fi
+  vp8=val*st1*vp3/(60*vp4)
+  WRITE vp8
+  ON_ERROR
+  vp8=100000000000000
+  RETURN vp8
+end
+
+
+macros ct1
+  ON_READ
+  READ ct1
+  ct1=ct1*5/2500
+  RETURN ct1
+  ON_WRITE
+  ct1=val*2500/5
+  WRITE ct1
+end
+
+
+macros ct2 ОТКЛЮЧЕНО
+  ON_READ
+  READ ct2
+  if st1=0
+  READ st1
+  fi
+  if vp4=0
+  READ vp4
+  fi
+  if vp3=0
+  READ vp3
+  fi
+  ct2=round(60*ct2*vp4/(st1*vp3))
+  RETURN ct2
+  ON_WRITE
+  if st1=0
+  READ st1
+  fi
+  if vp4=0
+  READ vp4
+  fi
+  if vp3=0
+  READ vp3
+  fi
+  ct2=val*st1*vp3/(60*vp4)
+  WRITE ct2
+end
+
+
+macros dd1
+  ON_READ
+  READ dd1
+  dd1=dd1*5/2047
+  RETURN dd1
+  ON_WRITE
+  dd1=val*2047/5
+  WRITE dd1
+end
+
+
+macros dd6
+  ON_READ
+  READ dd6
+  dd6=dd6*5/2047
+  RETURN dd6
+  ON_WRITE
+  dd6=val*2047/5
+  WRITE dd6
+end
+
+
+macros dd3
+  ON_READ
+  READ dd3
+  dd3=dd3*5/2047
+  RETURN dd3
+  ON_WRITE
+  dd3=val*2047/5
+  WRITE dd3
+end
+
+
+macros dd9
+  ON_READ
+  READ dd9
+  dd9=dd9*5/2047
+  RETURN dd9
+  ON_WRITE
+  dd9=val*2047/5
+  WRITE dd9
+end
+
+
+macros dd2
+  ON_READ
+  READ dd2
+  dd2=dd2*5/2047
+  RETURN dd2
+  ON_WRITE
+  dd2=val*2047/5
+  WRITE dd2
+end
+
+
+macros dd4 ОТКЛЮЧЕНО
+  ON_READ
+  READ dd4
+  if st1=0
+  READ st1
+  fi
+  if vp4=0
+  READ vp4
+  fi
+  x=round(60*dd4*vp4/st1)
+  RETURN x
+  ON_WRITE
+  dd4=val
+  WRITE dd4
+  ON_STREAM_REQ
+  READ st1
+  READ vp4
+  ON_ERROR
+  dd4=100000000000000
+  RETURN dd4
+end
+
+
+macros dd5 ОТКЛЮЧЕНО
+  ON_READ
+  READ dd5
+  if st1=0
+  READ st1
+  fi
+  if vp4=0
+  READ vp4
+  fi
+  if vp3=0
+  READ vp3
+  fi
+  dd5=round(60*dd5*vp4/(st1*vp3))
+  RETURN dd5
+  ON_WRITE
+  dd5=val
+  WRITE dd5
+  ON_STREAM_REQ
+  READ st1
+  READ vp4
+  ON_ERROR
+  dd5=100000000000
+  RETURN dd5
+end
+
+
+macros dd20 ОТКЛЮЧЕНО
+  ON_READ
+  READ dd20
+  dd20=dd20/4096
+  RETURN dd20
+  ON_WRITE
+  dd20=val
+  WRITE dd20
+end
+
+
+macros dd10
+  ON_READ
+  READ dd10
+  dd10=dd10/128
+  RETURN dd10
+  ON_WRITE
+  dd10=val
+  WRITE dd10
+end
+
+
+macros dd19
+  ON_READ
+  READ dd19
+  dd19=dd19/178
+  RETURN dd19
+  ON_WRITE
+  dd19=val
+  WRITE dd19
+end
+
+
+macros dd12
+  ON_READ
+  READ dd12
+  dd12=dd12/21
+  RETURN dd12
+  ON_WRITE
+  dd12=val
+  WRITE dd12
+end
+
+
+macros tp2 ОТКЛЮЧЕНО
+  ON_READ
+  READ tp2
+  tp2=tp2*25
+  RETURN tp2
+  ON_WRITE
+  tp2=val/25
+  WRITE tp2
+  ON_ERROR
+  err=100000000000
+  RETURN err
+end
+
+
+macros tp5
+  ON_READ
+  READ tp5
+  tp5=tp5*25
+  RETURN tp5
+  ON_WRITE
+  tp5=val/25
+  WRITE tp5
+  ON_ERROR
+  err=100000000000
+  RETURN err
+end
+
+
+macros tp6 ОТКЛЮЧЕНО
+  ON_READ
+  READ tp6
+  if st1=0
+  READ st1
+  fi
+  if vp4=0
+  READ vp4
+  fi
+  if vp3=0
+  READ vp3
+  fi
+  tp6=round(60*tp6*vp4/(st1*vp3))
+  RETURN tp6
+  ON_WRITE
+  if st1=0
+  READ st1
+  fi
+  if vp4=0
+  READ vp4
+  fi
+  if vp3=0
+  READ vp3
+  fi
+  tp6=val*st1*vp3/(60*vp4)
+  WRITE tp6
+  ON_ERROR
+  tp6=100000000000000
+  RETURN tp6
+end
+
+
+macros vp10
+  ON_READ
+  READ vp10
+  if st1=0
+  READ st1
+  fi
+  if vp4=0
+  READ vp4
+  fi
+  if vp3=0
+  READ vp3
+  fi
+  vp10=round(60*vp10*vp4/(st1*vp3))
+  RETURN vp10
+  ON_WRITE
+  if st1=0
+  READ st1
+  fi
+  if vp4=0
+  READ vp4
+  fi
+  if vp3=0
+  READ vp3
+  fi
+  vp10=val*st1*vp3/(60*vp4)
+  WRITE vp10
+  ON_ERROR
+  vp10=100000000000000
+  RETURN vp10
+end
+
+
+macros vp11
+  ON_READ
+  READ vp11
+  if st1=0
+  READ st1
+  fi
+  if vp4=0
+  READ vp4
+  fi
+  if vp3=0
+  READ vp3
+  fi
+  vp11=round(60*vp11*vp4/(st1*vp3))
+  RETURN vp11
+  ON_WRITE
+  if st1=0
+  READ st1
+  fi
+  if vp4=0
+  READ vp4
+  fi
+  if vp3=0
+  READ vp3
+  fi
+  vp11=val*st1*vp3/(60*vp4)
+  WRITE vp11
+  ON_ERROR
+  vp11=100000000000000
+  RETURN vp11
+end
+
+
+macros vp12
+  ON_READ
+  READ vp12
+  if st1=0
+  READ st1
+  fi
+  if vp4=0
+  READ vp4
+  fi
+  if vp3=0
+  READ vp3
+  fi
+  vp12=round(60*vp12*vp4/(st1*vp3))
+  RETURN vp12
+  ON_WRITE
+  if st1=0
+  READ st1
+  fi
+  if vp4=0
+  READ vp4
+  fi
+  if vp3=0
+  READ vp3
+  fi
+  vp12=val*st1*vp3/(60*vp4)
+  WRITE vp12
+  ON_ERROR
+  vp12=100000000000000
+  RETURN vp12
+end
+
+
+macros vp13
+  ON_READ
+  READ vp13
+  if st1=0
+  READ st1
+  fi
+  if vp4=0
+  READ vp4
+  fi
+  if vp3=0
+  READ vp3
+  fi
+  vp13=round(60*vp13*vp4/(st1*vp3))
+  RETURN vp13
+  ON_WRITE
+  if st1=0
+  READ st1
+  fi
+  if vp4=0
+  READ vp4
+  fi
+  if vp3=0
+  READ vp3
+  fi
+  vp13=val*st1*vp3/(60*vp4)
+  WRITE vp13
+  ON_ERROR
+  vp13=100000000000000
+  RETURN vp13
+end
+
+
+macros vp14
+  ON_READ
+  READ vp14
+  if st1=0
+  READ st1
+  fi
+  if vp4=0
+  READ vp4
+  fi
+  x=round(60*vp14*1000/4000)
+  RETURN x
+  ON_WRITE
+  if st1=0
+  READ st1
+  fi
+  if vp4=0
+  READ vp4
+  fi
+  vp14=val*4000/(60*1000)
+  WRITE vp14
+  ON_STREAM_REQ
+  READ st1
+  READ vp4
+  ON_ERROR
+  dd4=100000000000000
+  RETURN vp14
+end
+
+
+macros ep2
+  ON_READ
+  READ ep2
+  ep2=ep2/21
+  RETURN ep2
+  ON_WRITE
+  ep2=val*21
+  WRITE ep2
+end
+
+
+macros dd15
+  ON_READ
+  READ dd15
+  dd15=dd15*25/1000
+  RETURN dd15
+  ON_WRITE
+  dd15=val
+  WRITE dd15
+end
+
+
+macros dd16
+  ON_READ
+  READ dd16
+  dd16=dd16*25/1000
+  RETURN dd16
+  ON_WRITE
+  dd16=val
+  WRITE dd16
+end
+
+
+macros cp9 ОТКЛЮЧЕНО
+  ON_READ
+  READ cp3
+  cp3=cp3*5/2047
+  RETURN cp3
+  ON_WRITE
+  cp3=val*66
+  WRITE cp3
+end
+
+
+macros cp10
+  ON_READ
+  READ cp3
+  cp3=cp3*5/2047
+  RETURN cp3
+  ON_WRITE
+  cp3=val*66
+  WRITE cp3
+end
+
+
+macros dd27
+  ON_READ
+  READ dd1
+  dd1=dd1*5/2047
+  RETURN dd1
+  ON_WRITE
+  dd1=val*2047/5
+  WRITE dd1
+end
+
+
+macros dd28
+  ON_READ
+  READ dd6
+  dd6=dd6/74
+  RETURN dd6
+  ON_WRITE
+  dd6=val*74
+  WRITE dd6
+end
+
+
+macros dd29
+  ON_READ
+  READ dd1
+  dd1=dd1/74
+  RETURN dd1
+  ON_WRITE
+  dd1=val*74
+  WRITE dd1
+end
+
+
+macros dd30 ОТКЛЮЧЕНО
+  ON_READ
+  READ dd1
+  dd1=dd1/74
+  RETURN dd1
+  ON_WRITE
+  dd1=val*74
+  WRITE dd1
+end
+
+
+macros dd31 ОТКЛЮЧЕНО
+  ON_READ
+  READ vp14
+  if st1=0
+  READ st1
+  fi
+  if vp4=0
+  READ vp4
+  fi
+  x=round(60*vp14*vp4/4000)
+  RETURN x
+  ON_WRITE
+  if st1=0
+  READ st1
+  fi
+  if vp4=0
+  READ vp4
+  fi
+  vp14=val*4000/(60*vp4)
+  WRITE vp14
+  ON_STREAM_REQ
+  READ st1
+  READ vp4
+  ON_ERROR
+  dd4=100000000000000
+  RETURN vp14
+end
+

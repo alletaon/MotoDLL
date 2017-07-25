@@ -1,0 +1,28 @@
+#ifndef _COMMON_MOTO_DLL2_
+#define _COMMON_MOTO_DLL2_
+
+//error codes
+#define ERR_OK 0
+#define ERR_CANT_GET_PARAMS -2
+#define ERR_CANT_OPEN_PORT -1
+#define ERR_CANT_SET_BUFSIZE -3
+#define ERR_CANT_SET_PARAMS -4
+#define ERR_CANT_SET_TIMEOUTS -5
+#define ERR_INTERNAL_FAULT -300
+#define ERR_INVALID_PARAM -301
+#define ERR_PORT_CLOSED -302
+#define ERR_ALREADY_OPEN -303
+#define ERR_INVALID_INVERTER -600
+#define ERR_BUSY -700
+#define ERR_EMPTY_SCRIPT -701
+#define ERR_OBSOLETE -702
+#define ERR_GENERIC -703
+#define ERR_NOT_IMPLEMENTED -704
+
+#define ERR_PORT_DEAD -16
+#define ERR_TIMEOUT -17
+#define ERR_BAD_ADDR -18
+#define ERR_TOO_LONG -19
+#define ERR_FRAMING_ERROR -20
+
+#endif

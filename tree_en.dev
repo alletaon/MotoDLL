@@ -1,0 +1,3779 @@
+//-------------------------------------------------------------
+// —¬Œ…—“¬¿ ÃŒƒ”Àﬂ
+//-------------------------------------------------------------
+Unit
+
+UnitName    =»Ïˇ ÍÓÌÙË„Û‡ˆËË ÌÂ ÛÍ‡Á‡ÌÓ
+UnitVersion =ÌÂ ÛÍ‡Á‡ÌÓ
+
+//-------------------------------------------------------------
+// ƒ≈–≈¬Œ œ¿–¿Ã≈“–Œ¬
+//-------------------------------------------------------------
+Interface
+
+0,node: Base parameters
+1,node: Static parameters
+2,cp: Current loop
+2,vp: Speed loop
+2,pp: Position loop
+2,st: Miscellaneous
+2,ip: Interface
+2,ep: Service parameters
+2,io: Ports input & output
+2,pd: Additional PID reg
+1,ct: Control parameters
+1,dd: Dynamic parameters
+1,ss: System parameters
+1,tp: Test parameters
+0,node: User parameters
+1,up: User variables
+
+//-------------------------------------------------------------
+// Œœ»—¿Õ»≈ œ¿–¿Ã≈“–Œ¬
+//-------------------------------------------------------------
+Descriptions
+
+---
+NAME     =cp1
+GROUP    =cp
+CAPTION  =Proportional coefficient
+UNITS    =
+LIST     =
+ADDRESS  =0x0000
+DESCRIP  =
+MINMAX   =0;100
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =cp2
+GROUP    =cp
+CAPTION  =Integral coefficient
+UNITS    =
+LIST     =
+ADDRESS  =0x0002
+DESCRIP  =
+MINMAX   =0;200
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =cp3
+GROUP    =cp
+CAPTION  =Max current
+UNITS    =A
+LIST     =
+ADDRESS  =0x0004
+DESCRIP  =
+MINMAX   =0;1500
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =0.25
+MACROS   =1
+---
+NAME     =cp4
+GROUP    =cp
+CAPTION  =Maximum PWM
+UNITS    =A
+LIST     =
+ADDRESS  =0x0005
+DESCRIP  =
+MINMAX   =0;4800
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =0.25
+MACROS   =1
+---
+NAME     =vp1
+GROUP    =vp
+CAPTION  =Proportional coefficient
+UNITS    =
+LIST     =
+ADDRESS  =0x0006
+DESCRIP  =
+MINMAX   =0;60000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =vp2
+GROUP    =vp
+CAPTION  =Integral coefficient
+UNITS    =
+LIST     =
+ADDRESS  =0x0007
+DESCRIP  =
+MINMAX   =0;60000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =vp3
+GROUP    =vp
+CAPTION  =Feedback coefficient
+UNITS    =
+LIST     =
+ADDRESS  =0x0008
+DESCRIP  =
+MINMAX   =-1;1
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =vp4
+GROUP    =vp
+CAPTION  =Speed loop frequency
+UNITS    =Hz
+LIST     =100:100; 200:200; 500:500; 1000:1000; 2000:2000; 5000:5000;
+ADDRESS  =0x0009
+DESCRIP  =
+MINMAX   =100;5000
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =vp5
+GROUP    =vp
+CAPTION  =Acceleration
+UNITS    =rotate/(sec^2)
+LIST     =
+ADDRESS  =0x000A
+DESCRIP  =
+MINMAX   =1;2000000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =10
+MACROS   =0
+---
+NAME     =pp1
+GROUP    =pp
+CAPTION  =Proportional coefficient
+UNITS    =
+LIST     =
+ADDRESS  =0x000B
+DESCRIP  =
+MINMAX   =0;10000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =4
+MACROS   =0
+---
+NAME     =pp2
+GROUP    =pp
+CAPTION  =Integral coefficient
+UNITS    =
+LIST     =
+ADDRESS  =0x000C
+DESCRIP  =
+MINMAX   =0;30000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =4
+MACROS   =0
+---
+NAME     =pp3
+GROUP    =pp
+CAPTION  =Position loop frequency
+UNITS    =Hz
+LIST     =25:25; 50:50; 100:100; 200:200; 500:500;1000:1000; 2000:2000; 5000:500@Ä
+ADDRESS  =0x000D
+DESCRIP  =
+MINMAX   =25;5000
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =vp9
+GROUP    =vp
+CAPTION  =Internal interpolator
+UNITS    =
+LIST     =0:ON;2:OFF;3:G decoder;4:S curve;
+ADDRESS  =0x000F
+DESCRIP  =Using of internal interpolator of speed
+MINMAX   =0;5
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =cp5
+GROUP    =cp
+CAPTION  =Current loop state
+UNITS    =
+LIST     =0:OFF; 2:ON;
+ADDRESS  =0x0010
+DESCRIP  =
+MINMAX   =0;6150
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =vp7
+GROUP    =vp
+CAPTION  =Speed loop state
+UNITS    =
+LIST     =0:OFF; 2:ON;
+ADDRESS  =0x0011
+DESCRIP  =
+MINMAX   =0;2
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =pp5
+GROUP    =pp
+CAPTION  =Position loop state
+UNITS    =
+LIST     =0:OFF; 2:ON;
+ADDRESS  =0x0012
+DESCRIP  =
+MINMAX   =0;2
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =vp8
+GROUP    =vp
+CAPTION  =Max speed
+UNITS    =rpm
+LIST     =
+ADDRESS  =0x0014
+DESCRIP  =
+MINMAX   =0;8000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =ss1
+GROUP    =ss
+CAPTION  =Test parameter
+UNITS    =
+LIST     =
+ADDRESS  =0x0013
+DESCRIP  =
+MINMAX   =-65535;65535
+SERVICE  =0
+READONLY =0
+DEVELOP  =1
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ct1
+GROUP    =ct
+CAPTION  =Required current
+UNITS    =A
+LIST     =
+ADDRESS  =0x0200
+DESCRIP  =Control signal
+MINMAX   =-4;4
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =0.05
+MACROS   =1
+---
+NAME     =ct2
+GROUP    =ct
+CAPTION  =Required speed
+UNITS    =rpm
+LIST     =
+ADDRESS  =0x0202
+DESCRIP  =Control signal
+MINMAX   =-12000;12000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =ct3
+GROUP    =ct
+CAPTION  =Required position
+UNITS    =pulses
+LIST     =
+ADDRESS  =0x0204
+DESCRIP  =Control signal
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =dd1
+GROUP    =dd
+CAPTION  =Current in phase winding 1
+UNITS    =A
+LIST     =
+ADDRESS  =0x0400
+DESCRIP  =
+MINMAX   =-5;5
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =16
+STEP     =0.05
+MACROS   =1
+---
+NAME     =dd2
+GROUP    =dd
+CAPTION  =Required current
+UNITS    =A
+LIST     =
+ADDRESS  =0x0402
+DESCRIP  =
+MINMAX   =-5;5
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =16
+STEP     =0.05
+MACROS   =1
+---
+NAME     =dd3
+GROUP    =dd
+CAPTION  =Current in phase winding 2
+UNITS    =A
+LIST     =
+ADDRESS  =0x0405
+DESCRIP  =
+MINMAX   =-5;5
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =16
+STEP     =0.05
+MACROS   =1
+---
+NAME     =dd4
+GROUP    =dd
+CAPTION  =Speed
+UNITS    =rpm
+LIST     =
+ADDRESS  =0x0408
+DESCRIP  =
+MINMAX   =-5000;5000
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =16
+STEP     =12
+MACROS   =0
+---
+NAME     =dd5
+GROUP    =dd
+CAPTION  =Required speed
+UNITS    =rpm
+LIST     =
+ADDRESS  =0x0409
+DESCRIP  =
+MINMAX   =-5000;5000
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =16
+STEP     =12
+MACROS   =0
+---
+NAME     =dd6
+GROUP    =dd
+CAPTION  =Required current in phase winding 1
+UNITS    =A
+LIST     =
+ADDRESS  =0x040A
+DESCRIP  =
+MINMAX   =-5;5
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =1
+---
+NAME     =dd7
+GROUP    =dd
+CAPTION  =Required position
+UNITS    =pulses
+LIST     =
+ADDRESS  =0x040B
+DESCRIP  =
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =dd8
+GROUP    =dd
+CAPTION  =
+UNITS    =pulses
+LIST     =
+ADDRESS  =0x040C
+DESCRIP  =
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =dd9
+GROUP    =dd
+CAPTION  =Required current in phase winding 2
+UNITS    =A
+LIST     =
+ADDRESS  =0x040D
+DESCRIP  =
+MINMAX   =-5;5
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =1
+---
+NAME     =dd10
+GROUP    =dd
+CAPTION  =Temperature
+UNITS    =grad
+LIST     =
+ADDRESS  =0x040E
+DESCRIP  =
+MINMAX   =-40;120
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =1
+---
+NAME     =dd11
+GROUP    =dd
+CAPTION  =Driver status
+UNITS    =
+LIST     =0: OK; 1: Stop by command; 3: FAILED ñ Shorts;4: FAILED ñ High temperature; 5: FAILED ñ High voltage;6: FAILED ñ Low voltage;7: FAILED ñ High digital voltage;8: FAILED ñ low digital voltage;9:FAILED:Voltage exceeds value which set by user;10:FAIL: Overcurrent;11:FAIL:IGBT module fault;12:FAIL - UVW track error;13:FAIL - wrong encoder settings;14: FAIL - encoder fault;15: FAIL: encoder phase error;
+ADDRESS  =0x040F
+DESCRIP  =
+MINMAX   =0;15
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =dd19
+GROUP    =dd
+CAPTION  =Digital voltage
+UNITS    =V
+LIST     =
+ADDRESS  =0x0417
+DESCRIP  =
+MINMAX   =0;23
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =1
+---
+NAME     =dd12
+GROUP    =dd
+CAPTION  =Power voltage
+UNITS    =V
+LIST     =
+ADDRESS  =0x0410
+DESCRIP  =
+MINMAX   =0;120
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =1
+---
+NAME     =st1
+GROUP    =st
+CAPTION  =Resolution of encoder
+UNITS    =pulses
+LIST     =
+ADDRESS  =0x0015
+DESCRIP  =
+MINMAX   =0;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =tp1
+GROUP    =tp
+CAPTION  =Oscilloscope mode
+UNITS    =
+LIST     =0:Continuous;1:Step of position;2:Sin of position;3:Step of speed;4:Sin of speed; 5:Triangle postion;6:Measuring without control;7: Measuring without control until stop by user;8:Torque step;
+ADDRESS  =0x0500
+DESCRIP  =
+MINMAX   =0;8
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =tp3
+GROUP    =tp
+CAPTION  =Step of position
+UNITS    =
+LIST     =
+ADDRESS  =0x0504
+DESCRIP  =
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =ip0
+GROUP    =ip
+CAPTION  =Active interface for control
+UNITS    =
+LIST     =0:USB;2:StepDir;4:Analog input;5:CAN
+ADDRESS  =0x0017
+DESCRIP  =
+MINMAX   =0;5
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =st2
+GROUP    =st
+CAPTION  =Driver software version
+UNITS    =
+LIST     =
+ADDRESS  =0x0016
+DESCRIP  =
+MINMAX   =0;2147483647
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =ip1
+GROUP    =ip
+CAPTION  =Pulse weight coefficient
+UNITS    =
+LIST     =
+ADDRESS  =0x0018
+DESCRIP  =This parameter defines weight coefficient for one pulse received through Step/Dir  interface.
+MINMAX   =-4000;4000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =10
+MACROS   =0
+---
+NAME     =tp2
+GROUP    =tp
+CAPTION  =Time between measurements
+UNITS    =usec
+LIST     =
+ADDRESS  =0x0502
+DESCRIP  =
+MINMAX   =25;25000
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =25
+MACROS   =0
+---
+NAME     =tp5
+GROUP    =tp
+CAPTION  =Time before setting control
+UNITS    =usec
+LIST     =
+ADDRESS  =0x0505
+DESCRIP  =
+MINMAX   =25;800000
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =25
+MACROS   =1
+---
+NAME     =tp6
+GROUP    =tp
+CAPTION  =Step on speed
+UNITS    =rpm
+LIST     =
+ADDRESS  =0x0506
+DESCRIP  =
+MINMAX   =-14000;14000
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ip2
+GROUP    =ip
+CAPTION  =Program bank
+UNITS    =Bank
+LIST     =0:0;1:1;2:2;3:3;4:4;5:5;6:6;7:7;255:CNC is not used;
+ADDRESS  =0x001A
+DESCRIP  =This parameter defines the program which will be run after controller run
+MINMAX   =0;255
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =1
+MACROS   =0
+---
+NAME     =ip3
+GROUP    =ip
+CAPTION  =System bank
+UNITS    =Bank
+LIST     =0:0;1:1;2:2;3:3;4:4;5:5;6:6;7:7;255:NO;
+ADDRESS  =0x001B
+DESCRIP  =Donít change this parameter yourself
+MINMAX   =0;255
+SERVICE  =0
+READONLY =1
+DEVELOP  =1
+BITS     =16
+STEP     =1
+MACROS   =0
+---
+NAME     =ip4
+GROUP    =ip
+CAPTION  =CNC mode
+UNITS    =
+LIST     =0:Continues;1:Debug;
+ADDRESS  =0x001C
+DESCRIP  =
+MINMAX   =0;1
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =1
+MACROS   =0
+---
+NAME     =st3
+GROUP    =st
+CAPTION  =UID
+UNITS    =
+LIST     =
+ADDRESS  =0x001E
+DESCRIP  =Unique identifier of the driver
+MINMAX   =0;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =ip5
+GROUP    =ip
+CAPTION  =In/Out ports
+UNITS    =
+LIST     =
+ADDRESS  =0x0001D
+DESCRIP  =8 most significant bits define out ports, 8 less bits define in ports
+MINMAX   =0;65535
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ss2
+GROUP    =ss
+CAPTION  =Total shorts amount
+UNITS    =
+LIST     =
+ADDRESS  =0x001F
+DESCRIP  =
+MINMAX   =0;65535
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ss3
+GROUP    =ss
+CAPTION  =Total over temperature amount
+UNITS    =
+LIST     =
+ADDRESS  =0x0020
+DESCRIP  =
+MINMAX   =0;65535
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ss4
+GROUP    =ss
+CAPTION  =Total over voltage amount
+UNITS    =
+LIST     =
+ADDRESS  =0x0021
+DESCRIP  =
+MINMAX   =0;65535
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =
+STEP     =
+MACROS   =0
+---
+NAME     =ss5
+GROUP    =ss
+CAPTION  =Total under voltage amount
+UNITS    =
+LIST     =
+ADDRESS  =0x0022
+DESCRIP  =
+MINMAX   =0;65535
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ss6
+GROUP    =ss
+CAPTION  =Total overload amount
+UNITS    =
+LIST     =
+ADDRESS  =0x0023
+DESCRIP  =
+MINMAX   =0;65535
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ss7
+GROUP    =ss
+CAPTION  =Total software updates
+UNITS    =
+LIST     =
+ADDRESS  =0x0024
+DESCRIP  =
+MINMAX   =0;65535
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ss8
+GROUP    =ss
+CAPTION  =Message 0
+UNITS    =
+LIST     =1:Short;2:Over temperature;3:Over voltage;4:Under voltage;5:Over current;6:Software update;
+ADDRESS  =0x0025
+DESCRIP  =
+MINMAX   =0;65535
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ss9
+GROUP    =ss
+CAPTION  =Message 1
+UNITS    =
+LIST     =1:Short;2:Over temperature;3:Over voltage;4:Under voltage;5:Over current;6:Software update;
+ADDRESS  =0x0026
+DESCRIP  =
+MINMAX   =0;65535
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ss10
+GROUP    =ss
+CAPTION  =MessagΩ§
+UNITS    =
+LIST     =1:Short;2:Over temperature;3:Over voltage;4:Under voltage;5:Over current;6:Software update;
+ADDRESS  =0x0027
+DESCRIP  =
+MINMAX   =0;65535
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ss11
+GROUP    =ss
+CAPTION  =Message 3
+UNITS    =
+LIST     =1:Short;2:Over temperature;3:Over voltage;4:Under voltage;5:Over current;6:Software update;
+ADDRESS  =0x0028
+DESCRIP  =
+MINMAX   =0;65535
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ss12
+GROUP    =ss
+CAPTION  =Message 4
+UNITS    =
+LIST     =1:Short;2:Over temperature;3:Over voltage;4:Under voltage;5:Over current;6:Software update;
+ADDRESS  =0x0029
+DESCRIP  =
+MINMAX   =0;65535
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ss13
+GROUP    =ss
+CAPTION  =Message 5
+UNITS    =
+LIST     =1:Short;2:Over temperature;3:Over voltage;4:Under voltage;5:Over current;6:Software update;
+ADDRESS  =0x002A
+DESCRIP  =
+MINMAX   =0;65535
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ss14
+GROUP    =ss
+CAPTION  =Message 6
+UNITS    =
+LIST     =1:Short;2:Over temperature;3:Over voltage;4:Under voltage;5:Over current;6:Software update;
+ADDRESS  =0x002B
+DESCRIP  =
+MINMAX   =0;65535
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ss15
+GROUP    =ss
+CAPTION  =Message 7
+UNITS    =
+LIST     =1:Short;2:Over temperature;3:Over voltage;4:Under voltage;5:Over current;6:Software update;
+ADDRESS  =0x002C
+DESCRIP  =
+MINMAX   =0;65535
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ip6
+GROUP    =ip
+CAPTION  =Shift of control range
+UNITS    =
+LIST     =
+ADDRESS  =0x0030
+DESCRIP  =
+MINMAX   =0;4096
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =dd13
+GROUP    =dd
+CAPTION  =Test parameter 1
+UNITS    =
+LIST     =
+ADDRESS  =0x0411
+DESCRIP  =
+MINMAX   =-65535;65535
+SERVICE  =0
+READONLY =1
+DEVELOP  =1
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =dd14
+GROUP    =dd
+CAPTION  =Test parameter 2
+UNITS    =
+LIST     =
+ADDRESS  =0x0412
+DESCRIP  =
+MINMAX   =-65535;65535
+SERVICE  =0
+READONLY =1
+DEVELOP  =1
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =vp10
+GROUP    =vp
+CAPTION  =Resonanse range 1 begin
+UNITS    =rpm
+LIST     =
+ADDRESS  =0x0031
+DESCRIP  =Used for set the resonanse range which should be excluded
+MINMAX   =0;8000
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =1
+---
+NAME     =vp11
+GROUP    =vp
+CAPTION  =Resonanse range 1 end
+UNITS    =rpm
+LIST     =
+ADDRESS  =0x0032
+DESCRIP  =Used for set the resonanse range which should be excluded
+MINMAX   =0;8000
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =1
+---
+NAME     =vp12
+GROUP    =vp
+CAPTION  =Resonanse range 2 begin
+UNITS    =rpm
+LIST     =
+ADDRESS  =0x0033
+DESCRIP  =Used for set the resonanse range which should be excluded
+MINMAX   =0;8000
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =1
+---
+NAME     =vp13
+GROUP    =vp
+CAPTION  =Resonanse range 2 end
+UNITS    =rpm
+LIST     =
+ADDRESS  =0x0034
+DESCRIP  =Used for set the resonanse range which should be excluded
+MINMAX   =0;8000
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =1
+---
+NAME     =ip7
+GROUP    =ip
+CAPTION  =CAN address of the device
+UNITS    =
+LIST     =
+ADDRESS  =0x0035
+DESCRIP  =
+MINMAX   =0;127
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ip8
+GROUP    =ip
+CAPTION  =CAN address of remount device
+UNITS    =
+LIST     =
+ADDRESS  =0x0036
+DESCRIP  =
+MINMAX   =0;127
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ip9
+GROUP    =ip
+CAPTION  =Sync mode CAN
+UNITS    =
+LIST     =0:No mode;1:Master mode;2:Slave mode;3:Sync from CNC;4:Syncfrom CNC using by SYNC command
+ADDRESS  =0x0037
+DESCRIP  =
+MINMAX   =0;4
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ip10
+GROUP    =ip
+CAPTION  =Status of CAN
+UNITS    =
+LIST     =0:OK;1:FAIL on the line;
+ADDRESS  =0x0038
+DESCRIP  =
+MINMAX   =0;3
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =vp14
+GROUP    =vp
+CAPTION  =Nominal speed
+UNITS    =rpm
+LIST     =
+ADDRESS  =0x0039
+DESCRIP  =
+MINMAX   =0;500
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =1
+---
+NAME     =vp15
+GROUP    =vp
+CAPTION  =Auto calculation of nominal speed
+UNITS    =
+LIST     =1:ON;0:OFF;
+ADDRESS  =0x0040
+DESCRIP  =
+MINMAX   =0;1
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =si1
+GROUP    =ss
+CAPTION  =Current sensor shift 1
+UNITS    =
+LIST     =
+ADDRESS  =0x0600
+DESCRIP  =Formula I=cur1-511-si1
+MINMAX   =0;4096
+SERVICE  =0
+READONLY =0
+DEVELOP  =1
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =si2
+GROUP    =ss
+CAPTION  =Current sensor shift 2
+UNITS    =
+LIST     =
+ADDRESS  =0x0601
+DESCRIP  =Formula I=cur2-511-si2
+MINMAX   =0;4096
+SERVICE  =0
+READONLY =0
+DEVELOP  =1
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =pp6
+GROUP    =pp
+CAPTION  =Integral value restriction
+UNITS    =
+LIST     =
+ADDRESS  =0x0041
+DESCRIP  =
+MINMAX   =0;15000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =10
+MACROS   =0
+---
+NAME     =ip11
+GROUP    =ip
+CAPTION  =CNC status
+UNITS    =
+LIST     =0:OK;1:Bank change;2:Unknown parameter;3: Unknown command;4:Stop;5:STATUS_UNKNOWN_AL_OP;6:STATUS_UNKNOWN_CMP_OP;7:Program loading; 8:STATUS_DEBUG_BREAK;9:STATUS_DEBUG_WAIT_END_OF_CMD;10:Unknown dynamic function;11:Old version of program;12:Too many 'while' operators;77:invalid condition;13:can't find Z signal
+ADDRESS  =0x0042
+DESCRIP  =
+MINMAX   =0;12
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =16
+STEP     =1
+MACROS   =0
+---
+NAME     =ep1
+GROUP    =ep
+CAPTION  =Breaking mode
+UNITS    =
+LIST     =0: Breaking without voltage control;2: Breaking with voltage control;
+ADDRESS  =0x0043
+DESCRIP  =
+MINMAX   =0;2
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ep2
+GROUP    =ep
+CAPTION  =Max voltage
+UNITS    =V
+LIST     =
+ADDRESS  =0x0044
+DESCRIP  =If driver will check voltage and voltage will be more this value, then driver will restrict decelerating or go to stop status according to parameter ep1
+MINMAX   =0;280
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =1
+---
+NAME     =dd15
+GROUP    =dd
+CAPTION  =Time of one command fulfill by CNC
+UNITS    =ms
+LIST     =
+ADDRESS  =0x0413
+DESCRIP  =
+MINMAX   =0;2147483647
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =32
+STEP     =1
+MACROS   =1
+---
+NAME     =dd16
+GROUP    =dd
+CAPTION  =Time of total program fulfill by CNC
+UNITS    =ms
+LIST     =
+ADDRESS  =0x0414
+DESCRIP  =
+MINMAX   =0;2147483647
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =32
+STEP     =1
+MACROS   =1
+---
+NAME     =ip12
+GROUP    =ip
+CAPTION  =Analog inputs dead zone
+UNITS    =pulses
+LIST     =
+ADDRESS  =0x0045
+DESCRIP  =
+MINMAX   =0;250
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =dd17
+GROUP    =dd
+CAPTION  =Analog input 0
+UNITS    =counts
+LIST     =
+ADDRESS  =0x0415
+DESCRIP  =
+MINMAX   =-65535;65535
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =dd18
+GROUP    =dd
+CAPTION  =Analog input 1
+UNITS    =counts
+LIST     =
+ADDRESS  =0x0416
+DESCRIP  =
+MINMAX   =-65535;65535
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =up0
+GROUP    =up
+CAPTION  =General purpose register 0
+UNITS    =
+LIST     =
+ADDRESS  =0x0700
+DESCRIP  =User can used as general purpose registar. For example, user can save the length of axis in it
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =up1
+GROUP    =up
+CAPTION  =General purpose register 1
+UNITS    =
+LIST     =
+ADDRESS  =0x0701
+DESCRIP  =User can used as general purpose registar. For example, user can save the length of axis in it
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =up2
+GROUP    =up
+CAPTION  =General purpose register 2
+UNITS    =
+LIST     =
+ADDRESS  =0x0702
+DESCRIP  =User can used as general purpose registar. For example, user can save the length of axis in it
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =up3
+GROUP    =up
+CAPTION  =General purpose register 3
+UNITS    =
+LIST     =
+ADDRESS  =0x0703
+DESCRIP  =User can used as general purpose registar. For example, user can save the length of axis in it
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =up4
+GROUP    =up
+CAPTION  =General purpose register 4
+UNITS    =
+LIST     =
+ADDRESS  =0x0704
+DESCRIP  =User can used as general purpose registar. For example, user can save the length of axis in it
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =up5
+GROUP    =up
+CAPTION  =General purpose registerˇ 5
+UNITS    =
+LIST     =
+ADDRESS  =0x0705
+DESCRIP  =User can used as general purpose registar. For example, user can save the length of axis in it
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =up6
+GROUP    =up
+CAPTION  =General purpose register 6
+UNITS    =
+LIST     =
+ADDRESS  =0x0706
+DESCRIP  =User can used as general purpose registar. For example, user can save the length of axis in it
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =up7
+GROUP    =up
+CAPTION  =General purpose register 7
+UNITS    =
+LIST     =
+ADDRESS  =0x0707
+DESCRIP  =User can used as general purpose registar. For example, user can save the length of axis in it
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =st4
+GROUP    =st
+CAPTION  =Servodrive type
+UNITS    =
+LIST     =1:HSD10-23xx;2:HSD20-23xx\1000Z;4:HSD20-23xx\2000Z;64:HSD-34xx;128:HSD20-34xx\2000Z;4096:HSD20-34xx\1000Z;8192:HSD25-330Watt;8193:HSD25-750Watt;8194:HSD25-1200Watt;8195:HSD25-1100075;8196:—œ—30-ıııı;
+ADDRESS  =0x0046
+DESCRIP  =
+MINMAX   =0;8192
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =st5
+GROUP    =st
+CAPTION  =Z channel
+UNITS    =
+LIST     =0:No;1:Yes;
+ADDRESS  =0x0047
+DESCRIP  =
+MINMAX   =0;1
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =cp6
+GROUP    =cp
+CAPTION  =Torque
+UNITS    =
+LIST     =100:100%;75:75%;50:50%;25:25%;
+ADDRESS  =0x0048
+DESCRIP  =
+MINMAX   =25;100
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =vp6
+GROUP    =vp
+CAPTION  =Time to set required velocity
+UNITS    =sec
+LIST     =0:Unlimited;1:1;2:2;3:3;4:4;5:5;6:6;7:7;8:8;9:9;10:10;11:11;12:12;13:13;14:14;15:15;16:16;17:17;18:18;19:19;20:20;21:21;22:22;23:23;24:24;25:25;26:26;27:27;28:28;29:29;30:30
+ADDRESS  =0x000E
+DESCRIP  =
+MINMAX   =0;30
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =1
+---
+NAME     =vp16
+GROUP    =vp
+CAPTION  =Diff coefficient
+UNITS    =
+LIST     =
+ADDRESS  =0x0050
+DESCRIP  =
+MINMAX   =0;60000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =ep3
+GROUP    =ep
+CAPTION  =Phase searching current
+UNITS    =value
+LIST     =
+ADDRESS  =0x0051
+DESCRIP  =
+MINMAX   =0;32000
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =1
+MACROS   =0
+---
+NAME     =ep4
+GROUP    =ep
+CAPTION  =Phase searching time
+UNITS    =value
+LIST     =
+ADDRESS  =0x0052
+DESCRIP  =
+MINMAX   =0;32000
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =1
+MACROS   =0
+---
+NAME     =ep5
+GROUP    =ep
+CAPTION  =Max temperature
+UNITS    =grad.
+LIST     =
+ADDRESS  =0x0054
+DESCRIP  =Max temperature inside servomotor
+MINMAX   =25;85
+SERVICE  =0
+READONLY =0
+DEVELOP  =1
+BITS     =16
+STEP     =1
+MACROS   =0
+---
+NAME     =cp7
+GROUP    =cp
+CAPTION  =PWM modulation
+UNITS    =
+LIST     =0:Off;1:On;
+ADDRESS  =0x0053
+DESCRIP  =
+MINMAX   =0;1
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =1
+MACROS   =0
+---
+NAME     =ep6
+GROUP    =ep
+CAPTION  =Phase searching period
+UNITS    =
+LIST     =0:Single;1:1;2:2;3:3;
+ADDRESS  =0x0056
+DESCRIP  =
+MINMAX   =0;3
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =1
+MACROS   =0
+---
+NAME     =up8
+GROUP    =up
+CAPTION  =X
+UNITS    =
+LIST     =
+ADDRESS  =0x0708
+DESCRIP  =User PLC variable
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =1
+MACROS   =0
+---
+NAME     =up9
+GROUP    =up
+CAPTION  =Y
+UNITS    =
+LIST     =
+ADDRESS  =0x0709
+DESCRIP  =User PLC variable
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =1
+MACROS   =0
+---
+NAME     =up10
+GROUP    =up
+CAPTION  =Z
+UNITS    =
+LIST     =
+ADDRESS  =0x070A
+DESCRIP  =User PLC variable
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =1
+MACROS   =0
+---
+NAME     =up11
+GROUP    =up
+CAPTION  =EEPROM mas
+UNITS    =
+LIST     =
+ADDRESS  =0x070B
+DESCRIP  =User EEPROM massive
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =1
+BITS     =32
+STEP     =1
+MACROS   =0
+---
+NAME     =up12
+GROUP    =up
+CAPTION  =EEPROM metadata
+UNITS    =
+LIST     =
+ADDRESS  =0x070C
+DESCRIP  =Metadata massive of params of motor
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =1
+BITS     =32
+STEP     =1
+MACROS   =0
+---
+NAME     =dd20
+GROUP    =dd
+CAPTION  =Position loop error
+UNITS    =pulses
+LIST     =
+ADDRESS  =0x0418
+DESCRIP  =
+MINMAX   =-2147483647;2147483647
+SERVICE  =1
+READONLY =1
+DEVELOP  =0
+BITS     =32
+STEP     =10
+MACROS   =0
+---
+NAME     =dd21
+GROUP    =dd
+CAPTION  =Velocity loop error
+UNITS    =rpm
+LIST     =
+ADDRESS  =0x0419
+DESCRIP  =
+MINMAX   =-65535;65535
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =16
+STEP     =1
+MACROS   =0
+---
+NAME     =dd22
+GROUP    =dd
+CAPTION  =Maximum position error
+UNITS    =
+LIST     =
+ADDRESS  =0x0420
+DESCRIP  =
+MINMAX   =0;65535
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ip13
+GROUP    =ip
+CAPTION  =Left limit
+UNITS    =pulses
+LIST     =
+ADDRESS  =0x0057
+DESCRIP  =
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =ip14
+GROUP    =ip
+CAPTION  =Right limit
+UNITS    =pulses
+LIST     =
+ADDRESS  =0x0058
+DESCRIP  =
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =dd23
+GROUP    =dd
+CAPTION  =Status of G decoder
+UNITS    =
+LIST     =0:Stop;1:Begin;2:Process;3:Conforms waiting;4:Error;5;Go to ziro
+ADDRESS  =0x0421
+DESCRIP  =
+MINMAX   =0;5
+SERVICE  =0
+READONLY =1
+DEVELOP  =1
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =dd24
+GROUP    =dd
+CAPTION  =Current frame of G decoder
+UNITS    =
+LIST     =
+ADDRESS  =0x0422
+DESCRIP  =
+MINMAX   =0;65535
+SERVICE  =0
+READONLY =1
+DEVELOP  =1
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ip15
+GROUP    =ip
+CAPTION  =CAN baud rate
+UNITS    =
+LIST     =500:500 kbps;1000:1000 kbps;
+ADDRESS  =0x0059
+DESCRIP  =Define baud rate on the CAN bus
+MINMAX   =50;1000
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =cp8
+GROUP    =cp
+CAPTION  =PWM frequency
+UNITS    =kHz
+LIST     =2500:40kHz;5000:20kHz;6250:16kHz;12500:8kHz;25000:4kHz;
+ADDRESS  =0x0060
+DESCRIP  =Influince to parameter cp4.
+MINMAX   =2500;25000
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ip16
+GROUP    =ip
+CAPTION  =USB2CAN convertor
+UNITS    =
+LIST     =0:On;2:Off;
+ADDRESS  =0x0061
+DESCRIP  =Fulfill translation of CAN messages from/to USB. If it's on, MotoMaster can easy to connect to all CAN network through only one USB connection through only one motor.
+MINMAX   =0;2
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =up13
+GROUP    =up
+CAPTION  =Current element EEPROM massive value
+UNITS    =
+LIST     =
+ADDRESS  =0x070D
+DESCRIP  =
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =1
+MACROS   =0
+---
+NAME     =up14
+GROUP    =up
+CAPTION  =EEPROM massive index
+UNITS    =
+LIST     =
+ADDRESS  =0x070E
+DESCRIP  =
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =1
+MACROS   =0
+---
+NAME     =up15
+GROUP    =up
+CAPTION  =SD counter value
+UNITS    =
+LIST     =
+ADDRESS  =0x070F
+DESCRIP  =
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =1
+MACROS   =0
+---
+NAME     =up16
+GROUP    =up
+CAPTION  =Middle torque
+UNITS    =
+LIST     =
+ADDRESS  =0x0710
+DESCRIP  =
+MINMAX   =-65535;65535
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =16
+STEP     =1
+MACROS   =0
+---
+NAME     =ip17
+GROUP    =ip
+CAPTION  =Timeout sending the sync com by master
+UNITS    =mcsec
+LIST     =
+ADDRESS  =0x0800
+DESCRIP  =
+MINMAX   =0;10000
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =25
+MACROS   =0
+---
+NAME     =ip18
+GROUP    =ip
+CAPTION  =Timeout sending the sync acke com by slave
+UNITS    =mcsec
+LIST     =
+ADDRESS  =0x0801
+DESCRIP  =
+MINMAX   =0;10000
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =25
+MACROS   =0
+---
+NAME     =st6
+GROUP    =st
+CAPTION  =Ziro sector of UVW tracks
+UNITS    =
+LIST     =1:1;2:2;3:3;4:4;5:5;6:6;170:Initialize UVW tracks on next start;85:Don't use UVW tracks;
+ADDRESS  =0x0802
+DESCRIP  =Defines one of 6 sectors of UVW, in which is ziro sector of motor
+MINMAX   =0;170
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =st7
+GROUP    =st
+CAPTION  =Shift inside of ziro sector of UVW tracks
+UNITS    =
+LIST     =
+ADDRESS  =0x0804
+DESCRIP  =Defines shift inside of ziro sector of UVW tracks
+MINMAX   =0;80000
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =io0
+GROUP    =io
+CAPTION  =In port 0
+UNITS    =
+LIST     =
+ADDRESS  =0x0805
+DESCRIP  =Value of input port
+MINMAX   =0;1
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =io1
+GROUP    =io
+CAPTION  =In port 1
+UNITS    =
+LIST     =
+ADDRESS  =0x0806
+DESCRIP  =Value of input port
+MINMAX   =0;1
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =io2
+GROUP    =io
+CAPTION  =In port 2
+UNITS    =
+LIST     =
+ADDRESS  =0x0807
+DESCRIP  =Value of input port
+MINMAX   =0;1
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =io3
+GROUP    =io
+CAPTION  =In port 3
+UNITS    =
+LIST     =
+ADDRESS  =0x0808
+DESCRIP  =Value of input port
+MINMAX   =0;1
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =io4
+GROUP    =io
+CAPTION  =Out port 0
+UNITS    =
+LIST     =
+ADDRESS  =0x0809
+DESCRIP  =Value of output port
+MINMAX   =0;1
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =io5
+GROUP    =io
+CAPTION  =Out port 1
+UNITS    =
+LIST     =
+ADDRESS  =0x080A
+DESCRIP  =Value of output port
+MINMAX   =0;1
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =io6
+GROUP    =io
+CAPTION  =PWM0
+UNITS    =
+LIST     =
+ADDRESS  =0x080B
+DESCRIP  =PWM of output port 0. Don't remember to config port that it work like PWM output
+MINMAX   =0;160
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =1
+MACROS   =0
+---
+NAME     =io7
+GROUP    =io
+CAPTION  =PWM1
+UNITS    =
+LIST     =
+ADDRESS  =0x080C
+DESCRIP  =PWM of output port 1. Don't remember to config port that it work like PWM output
+MINMAX   =0;160
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =1
+MACROS   =0
+---
+NAME     =io8
+GROUP    =io
+CAPTION  =In port 0 mode
+UNITS    =
+LIST     =0:General input mode;1:Quadrature counter mode;2:Step/dir counter mode;
+ADDRESS  =0x080D
+DESCRIP  =Defins mode of work input port
+MINMAX   =0;3
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =1
+MACROS   =0
+---
+NAME     =io9
+GROUP    =io
+CAPTION  =In port 1 mode
+UNITS    =
+LIST     =0:General input mode;1:Quadrature counter mode;2:Step/dir counter mode;
+ADDRESS  =0x080E
+DESCRIP  =Defins mode of work input port
+MINMAX   =0;3
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =1
+MACROS   =0
+---
+NAME     =io10
+GROUP    =io
+CAPTION  =In port 2 mode
+UNITS    =
+LIST     =0:General input mode;1:Quadrature counter mode;2:Step/dir counter mode;
+ADDRESS  =0x080F
+DESCRIP  =Defins mode of work input port
+MINMAX   =0;3
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =1
+MACROS   =0
+---
+NAME     =io11
+GROUP    =io
+CAPTION  =In port 3 mode
+UNITS    =
+LIST     =0:General input mode;1:Quadrature counter mode;2:Step/dir counter mode;
+ADDRESS  =0x0810
+DESCRIP  =Defins mode of work input port
+MINMAX   =0;3
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =1
+MACROS   =0
+---
+NAME     =io12
+GROUP    =io
+CAPTION  =Out port 0 mode
+UNITS    =
+LIST     =0:General input mode;1:Quadrature counter mode;2:Step/dir counter mode;
+ADDRESS  =0x0811
+DESCRIP  =Defins mode of work output port
+MINMAX   =0;3
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =1
+MACROS   =0
+---
+NAME     =io13
+GROUP    =io
+CAPTION  =Out port 1 mode
+UNITS    =
+LIST     =0:General input mode;1:Quadrature counter mode;2:Step/dir counter mode;
+ADDRESS  =0x0812
+DESCRIP  =Defins mode of work output port
+MINMAX   =0;3
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =1
+MACROS   =0
+---
+NAME     =io14
+GROUP    =io
+CAPTION  =Pulse counter
+UNITS    =
+LIST     =
+ADDRESS  =0x070F
+DESCRIP  =Hardware pulse counter of pulses received from IN0 and IN1. Create according configuration (look parameters io8 & io9).
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =32
+STEP     =1
+MACROS   =0
+---
+NAME     =dd25
+GROUP    =dd
+CAPTION  =UVW tracks
+UNITS    =
+LIST     =
+ADDRESS  =0x0423
+DESCRIP  =
+MINMAX   =0;16
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =st8
+GROUP    =st
+CAPTION  =Encoder type
+UNITS    =
+LIST     =0:Incremental;1:Absolute;
+ADDRESS  =0x0062
+DESCRIP  =
+MINMAX   =0;1
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =1
+MACROS   =0
+---
+NAME     =vp17
+GROUP    =vp
+CAPTION  =Jerk
+UNITS    =
+LIST     =
+ADDRESS  =0x0063
+DESCRIP  =
+MINMAX   =1;21470
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =10
+MACROS   =0
+---
+NAME     =cp9
+GROUP    =cp
+CAPTION  =I2t overpower
+UNITS    =A2sec
+LIST     =
+ADDRESS  =0x0814
+DESCRIP  =
+MINMAX   =0;350
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =16
+MACROS   =0
+---
+NAME     =cp10
+GROUP    =cp
+CAPTION  =Nominal current
+UNITS    =¿
+LIST     =
+ADDRESS  =0x0815
+DESCRIP  =
+MINMAX   =0;850
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =16
+MACROS   =1
+---
+NAME     =dd26
+GROUP    =dd
+CAPTION  =Current I2t overpower
+UNITS    =¿2ÒÂÍ
+LIST     =
+ADDRESS  =0x0424
+DESCRIP  =
+MINMAX   =0;100
+SERVICE  =1
+READONLY =1
+DEVELOP  =0
+BITS     =32
+STEP     =16
+MACROS   =0
+---
+NAME     =dd27
+GROUP    =dd
+CAPTION  =Current 3
+UNITS    =¿
+LIST     =
+ADDRESS  =0x0425
+DESCRIP  =Only for SPS.
+MINMAX   =-5;5
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =16
+STEP     =0.05
+MACROS   =1
+---
+NAME     =dd28
+GROUP    =dd
+CAPTION  =Reference current 3
+UNITS    =¿
+LIST     =
+ADDRESS  =0x0426
+DESCRIP  =Only for SPS.
+MINMAX   =-2047;2047
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =1
+---
+NAME     =dd29
+GROUP    =dd
+CAPTION  =Consumption current
+UNITS    =¿
+LIST     =
+ADDRESS  =0x0427
+DESCRIP  =Only for SPS.
+MINMAX   =-5;5
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =16
+STEP     =0.05
+MACROS   =1
+---
+NAME     =pd1
+GROUP    =pd
+CAPTION  =«ÓÌ‡ ÌÂ˜Û‚ÒÚ‚ËÚÂÎ¸ÌÓÒÚË
+UNITS    =
+LIST     =
+ADDRESS  =0x0A01
+DESCRIP  =œ‡‡ÏÂÚ Ì‡ÒÚÓÈÍË œ»ƒ-Â„ÛÎˇÚÓ‡
+MINMAX   =0;10000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =pd1
+GROUP    =pd
+CAPTION  =Deadband
+UNITS    =
+LIST     =
+ADDRESS  =0x0A01
+DESCRIP  =PID parameter
+MINMAX   =0;10000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =pd2
+GROUP    =pd
+CAPTION  =Max error
+UNITS    =
+LIST     =
+ADDRESS  =0x0A02
+DESCRIP  =PID parameter
+MINMAX   =0;524287
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =pd3
+GROUP    =pd
+CAPTION  =Kp
+UNITS    =
+LIST     =
+ADDRESS  =0x0A03
+DESCRIP  =PID parameter
+MINMAX   =0;10000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =pd4
+GROUP    =pd
+CAPTION  =Ki
+UNITS    =
+LIST     =
+ADDRESS  =0x0A04
+DESCRIP  =PID parameter
+MINMAX   =0;10000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =pd5
+GROUP    =pd
+CAPTION  =Kd
+UNITS    =
+LIST     =
+ADDRESS  =0x0A05
+DESCRIP  =PID parameter
+MINMAX   =0;10000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =pd6
+GROUP    =pd
+CAPTION  =Max error I
+UNITS    =
+LIST     =
+ADDRESS  =0x0A06
+DESCRIP  =PID parameter
+MINMAX   =0;100000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =pd7
+GROUP    =pd
+CAPTION  =Max error D
+UNITS    =
+LIST     =
+ADDRESS  =0x0A07
+DESCRIP  =PID parameter
+MINMAX   =0;100000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =pd8
+GROUP    =pd
+CAPTION  =Max command D
+UNITS    =
+LIST     =
+ADDRESS  =0x0A08
+DESCRIP  =PID parameter
+MINMAX   =0;524287
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =pd9
+GROUP    =pd
+CAPTION  =Max command DD
+UNITS    =
+LIST     =
+ADDRESS  =0x0A09
+DESCRIP  =PID parameter
+MINMAX   =0;524287
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =pd10
+GROUP    =pd
+CAPTION  =FF00
+UNITS    =
+LIST     =
+ADDRESS  =0x0A0A
+DESCRIP  =PID parameter
+MINMAX   =0;10000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =pd11
+GROUP    =pd
+CAPTION  =FF01
+UNITS    =
+LIST     =
+ADDRESS  =0x0A0B
+DESCRIP  =PID parameter
+MINMAX   =0;10000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =pd12
+GROUP    =pd
+CAPTION  =FF02
+UNITS    =
+LIST     =
+ADDRESS  =0x0A0C
+DESCRIP  =PID parameter
+MINMAX   =0;10000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =pd13
+GROUP    =pd
+CAPTION  =Bias
+UNITS    =
+LIST     =
+ADDRESS  =0x0A0D
+DESCRIP  =PID parameter
+MINMAX   =-524286;524287
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =pd14
+GROUP    =pd
+CAPTION  =Max output
+UNITS    =
+LIST     =
+ADDRESS  =0x0A0E
+DESCRIP  =PID parameter
+MINMAX   =0;524287
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =pd15
+GROUP    =pd
+CAPTION  =Ref
+UNITS    =
+LIST     =
+ADDRESS  =0x0A0F
+DESCRIP  =PID parameter
+MINMAX   =-524286;524287
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =pd16
+GROUP    =pd
+CAPTION  =Fb
+UNITS    =
+LIST     =
+ADDRESS  =0x0A10
+DESCRIP  =PID parameter
+MINMAX   =-524286;524287
+SERVICE  =1
+READONLY =1
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =pd17
+GROUP    =pd
+CAPTION  =Err
+UNITS    =
+LIST     =
+ADDRESS  =0x0A11
+DESCRIP  =PID parameter
+MINMAX   =-524286;524287
+SERVICE  =1
+READONLY =1
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =pp7
+GROUP    =pp
+CAPTION  =Max command D
+UNITS    =
+LIST     =
+ADDRESS  =0x0A12
+DESCRIP  =
+MINMAX   =0;524287
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =10
+MACROS   =0
+---
+NAME     =pp8
+GROUP    =pp
+CAPTION  =Max command DD
+UNITS    =
+LIST     =
+ADDRESS  =0x0A13
+DESCRIP  =
+MINMAX   =0;524287
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =10
+MACROS   =0
+---
+NAME     =pp9
+GROUP    =pp
+CAPTION  =FF1
+UNITS    =
+LIST     =
+ADDRESS  =0x0A14
+DESCRIP  =
+MINMAX   =0;100000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =10
+MACROS   =0
+---
+NAME     =pp10
+GROUP    =pp
+CAPTION  =FF2
+UNITS    =
+LIST     =
+ADDRESS  =0x0A15
+DESCRIP  =
+MINMAX   =0;100000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =10
+MACROS   =0
+---
+NAME     =vp18
+GROUP    =vp
+CAPTION  =Deadband
+UNITS    =
+LIST     =
+ADDRESS  =0x0A16
+DESCRIP  =
+MINMAX   =0;60000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =vp19
+GROUP    =vp
+CAPTION  =Max error
+UNITS    =
+LIST     =
+ADDRESS  =0x0A17
+DESCRIP  =
+MINMAX   =0;60000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =vp20
+GROUP    =vp
+CAPTION  =Max command D
+UNITS    =
+LIST     =
+ADDRESS  =0x0A18
+DESCRIP  =
+MINMAX   =0;524287
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =vp21
+GROUP    =vp
+CAPTION  =Max command DD
+UNITS    =
+LIST     =
+ADDRESS  =0x0A19
+DESCRIP  =
+MINMAX   =0;524287
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =vp22
+GROUP    =vp
+CAPTION  =FF0
+UNITS    =
+LIST     =
+ADDRESS  =0x0A1A
+DESCRIP  =
+MINMAX   =0;60000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =vp23
+GROUP    =vp
+CAPTION  =FF1
+UNITS    =
+LIST     =
+ADDRESS  =0x0A1B
+DESCRIP  =
+MINMAX   =0;60000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =vp24
+GROUP    =vp
+CAPTION  =FF2
+UNITS    =
+LIST     =
+ADDRESS  =0x0A1C
+DESCRIP  =
+MINMAX   =0;60000
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =st9
+GROUP    =st
+CAPTION  =Linear encoder type
+UNITS    =
+LIST     =0:No;1:Yes;
+ADDRESS  =0x0816
+DESCRIP  =If the parameter is set then external linear encoder will be used for closing position loop .
+MINMAX   =0;1
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =st10
+GROUP    =st
+CAPTION  =Linear encoder resolution
+UNITS    =Discret
+LIST     =
+ADDRESS  =0x0817
+DESCRIP  =
+MINMAX   =-524286;524286
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =dd30
+GROUP    =dd
+CAPTION  =Difference between internal end external encoder
+UNITS    =Discret
+LIST     =
+ADDRESS  =0x0428
+DESCRIP  =
+MINMAX   =-524286;524286
+SERVICE  =1
+READONLY =1
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =ss16
+GROUP    =ss
+CAPTION  =Sync missing counter
+UNITS    =
+LIST     =
+ADDRESS  =0x0818
+DESCRIP  =
+MINMAX   =0;65535
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ss17
+GROUP    =ss
+CAPTION  =Control message missing counter
+UNITS    =
+LIST     =
+ADDRESS  =0x0819
+DESCRIP  =
+MINMAX   =0;65535
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =ss18
+GROUP    =ss
+CAPTION  =Unknown command receiving counter
+UNITS    =
+LIST     =
+ADDRESS  =0x081A
+DESCRIP  =
+MINMAX   =0;65535
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =pd18
+GROUP    =pd
+CAPTION  =Low Pass Filter for reference signal
+UNITS    =
+LIST     =
+ADDRESS  =0x0A1D
+DESCRIP  =
+MINMAX   =0;1
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =pd19
+GROUP    =pd
+CAPTION  =Low Pass Filter for feadback signal
+UNITS    =
+LIST     =
+ADDRESS  =0x0A1E
+DESCRIP  =
+MINMAX   =0;1
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =ep7
+GROUP    =ep
+CAPTION  =GAP control function
+UNITS    =
+LIST     =0:OFF;90:ON;
+ADDRESS  =0x081B
+DESCRIP  =
+MINMAX   =0;90
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =1
+MACROS   =0
+---
+NAME     =pp11
+GROUP    =pp
+CAPTION  =Microinterpolation factor
+UNITS    =
+LIST     =1:1;2:2;3:3;4:4;5:5;
+ADDRESS  =0x081C
+DESCRIP  =
+MINMAX   =1;5
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =10
+MACROS   =0
+---
+NAME     =ip19
+GROUP    =ip
+CAPTION  =Last CAN message data (Bytes 0-3)
+UNITS    =
+LIST     =
+ADDRESS  =0x081D
+DESCRIP  =
+MINMAX   =-2147483637;2147483646
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =ip20
+GROUP    =ip
+CAPTION  =Last CAN message data (Bytes 4-7)
+UNITS    =
+LIST     =
+ADDRESS  =0x081E
+DESCRIP  =
+MINMAX   =-2147483637;2147483646
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =dd31
+GROUP    =dd
+CAPTION  =Field weakening shift
+UNITS    =
+LIST     =
+ADDRESS  =0x0429
+DESCRIP  =
+MINMAX   =0;0
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =vp25
+GROUP    =vp
+CAPTION  =Low Pass Filter koefficient of reference signal
+UNITS    =
+LIST     =
+ADDRESS  =0x081F
+DESCRIP  =
+MINMAX   =0;1
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =vp26
+GROUP    =vp
+CAPTION  =Low Pass Filter koefficient of feadback signal
+UNITS    =
+LIST     =
+ADDRESS  =0x0820
+DESCRIP  =
+MINMAX   =0;1
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =up17
+GROUP    =up
+CAPTION  =General variable 8
+UNITS    =
+LIST     =
+ADDRESS  =0x0711
+DESCRIP  =
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =up18
+GROUP    =up
+CAPTION  =General variable 9
+UNITS    =
+LIST     =
+ADDRESS  =0x0712
+DESCRIP  =
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =up19
+GROUP    =up
+CAPTION  =General variable 10
+UNITS    =
+LIST     =
+ADDRESS  =0x0713
+DESCRIP  =
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =up20
+GROUP    =up
+CAPTION  =General variable 11
+UNITS    =
+LIST     =
+ADDRESS  =0x0714
+DESCRIP  =
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =up21
+GROUP    =up
+CAPTION  =General variable  12
+UNITS    =
+LIST     =
+ADDRESS  =0x0715
+DESCRIP  =
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =up22
+GROUP    =up
+CAPTION  =General variable 13
+UNITS    =
+LIST     =
+ADDRESS  =0x0716
+DESCRIP  =
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =up23
+GROUP    =up
+CAPTION  =General variable  14
+UNITS    =
+LIST     =
+ADDRESS  =0x0717
+DESCRIP  =
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =up24
+GROUP    =up
+CAPTION  =General variable  15
+UNITS    =
+LIST     =
+ADDRESS  =0x0718
+DESCRIP  =
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =dd32
+GROUP    =dd
+CAPTION  =Control delying
+UNITS    =nanosec
+LIST     =
+ADDRESS  =0x042A
+DESCRIP  =
+MINMAX   =0;0
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =cp11
+GROUP    =cp
+CAPTION  =Ref signal LPF koef
+UNITS    =
+LIST     =
+ADDRESS  =0x0821
+DESCRIP  =
+MINMAX   =0;1
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =cp12
+GROUP    =cp
+CAPTION  =Feedback signal LPF koef
+UNITS    =
+LIST     =
+ADDRESS  =0x0822
+DESCRIP  =
+MINMAX   =0;1
+SERVICE  =1
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =st11
+GROUP    =st
+CAPTION  =Motor's resolution per pole
+UNITS    =pulses
+LIST     =
+ADDRESS  =0x0823
+DESCRIP  =
+MINMAX   =1000;2098176
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =st12
+GROUP    =st
+CAPTION  =Encoder divisor
+UNITS    =
+LIST     =
+ADDRESS  =0x0824
+DESCRIP  =Reduce the resolution of encoder to 2 or 4 times. If st12=1 then no division.
+MINMAX   =1;4
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =16
+STEP     =
+MACROS   =0
+---
+NAME     =st13
+GROUP    =st
+CAPTION  =Inverting of UVW
+UNITS    =
+LIST     =0:Not;21930:Yes;
+ADDRESS  =0x0825
+DESCRIP  =
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =0
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =dd33
+GROUP    =dd
+CAPTION  =Encoder pulses per UVW sector
+UNITS    =
+LIST     =
+ADDRESS  =0x042B
+DESCRIP  =
+MINMAX   =-2147483647;2147483647
+SERVICE  =0
+READONLY =1
+DEVELOP  =0
+BITS     =32
+STEP     =
+MACROS   =0
+---
+NAME     =dd34
+GROUP    =dd
+CAPTION  =Mean current
+UNITS    =ƒËÒÍÂÚ
+LIST     =
+ADDRESS  =0x042C
+DESCRIP  =
+MINMAX   =-2147483647;2147483647
+SERVICE  =1
+READONLY =1
+DEVELOP  =0
+BITS     =32
+STEP     =12
+MACROS   =0
+---
+NAME     =st14
+GROUP    =st
+CAPTION  =Auto phase searching
+UNITS    =
+LIST     =0:Not fulfilled;170:Activated;171:Wait for searching;172:Wait for + moving;173:Wait for - moving;174:Error searing;175:Success;
+ADDRESS  =0x0826
+DESCRIP  =
+MINMAX   =0;175
+SERVICE  =0
+READONLY =0
+DEVELOP  =1
+BITS     =16
+STEP     =0
+MACROS   =0
+
+//-------------------------------------------------------------
+//Ã¿ –Œ—€
+//-------------------------------------------------------------
+Functions
+
+
+macros cp3
+  ON_READ
+  READ cp3
+  cp3=cp3*5/2047
+  RETURN cp3
+  ON_WRITE
+  cp3=val*2047/5
+  WRITE cp3
+end
+
+
+macros cp4
+  ON_READ
+  READ cp4
+  cp4=cp4*5/2500
+  RETURN cp4
+  ON_WRITE
+  cp4=val*2500/5
+  WRITE cp4
+end
+
+
+macros vp5 Œ“ Àﬁ◊≈ÕŒ
+  ON_READ
+  READ vp5
+  vp5=vp5*2
+  RETURN vp5
+  ON_WRITE
+  vp5=val/2
+  WRITE vp5
+end
+
+
+macros vp8 Œ“ Àﬁ◊≈ÕŒ
+  ON_READ
+  READ vp8
+  if st1=0
+  READ st1
+  fi
+  if vp4=0
+  READ vp4
+  fi
+  if vp3=0
+  READ vp3
+  fi
+  vp8=round(60*vp8*vp4/(st1*vp3))
+  RETURN vp8
+  ON_WRITE
+  if st1=0
+  READ st1
+  fi
+  if vp4=0
+  READ vp4
+  fi
+  if vp3=0
+  READ vp3
+  fi
+  vp8=val*st1*vp3/(60*vp4)
+  WRITE vp8
+  ON_ERROR
+  vp8=100000000000000
+  RETURN vp8
+end
+
+
+macros ct1
+  ON_READ
+  READ ct1
+  ct1=ct1*5/2500
+  RETURN ct1
+  ON_WRITE
+  ct1=val*2500/5
+  WRITE ct1
+end
+
+
+macros ct2 Œ“ Àﬁ◊≈ÕŒ
+  ON_READ
+  READ ct2
+  if st1=0
+  READ st1
+  fi
+  if vp4=0
+  READ vp4
+  fi
+  if vp3=0
+  READ vp3
+  fi
+  ct2=round(60*ct2*vp4/(st1*vp3))
+  RETURN ct2
+  ON_WRITE
+  if st1=0
+  READ st1
+  fi
+  if vp4=0
+  READ vp4
+  fi
+  if vp3=0
+  READ vp3
+  fi
+  ct2=val*st1*vp3/(60*vp4)
+  WRITE ct2
+end
+
+
+macros dd1
+  ON_READ
+  READ dd1
+  dd1=dd1*5/2047
+  RETURN dd1
+  ON_WRITE
+  dd1=val*2047/5
+  WRITE dd1
+end
+
+
+macros dd2
+  ON_READ
+  READ dd2
+  dd2=dd2*5/2047
+  RETURN dd2
+  ON_WRITE
+  dd2=val*2047/5
+  WRITE dd2
+end
+
+
+macros dd3
+  ON_READ
+  READ dd3
+  dd3=dd3*5/2047
+  RETURN dd3
+  ON_WRITE
+  dd3=val*2047/5
+  WRITE dd3
+end
+
+
+macros dd4 Œ“ Àﬁ◊≈ÕŒ
+  ON_READ
+  READ dd4
+  if st1=0
+  READ st1
+  fi
+  if vp4=0
+  READ vp4
+  fi
+  x=round(60*dd4*vp4/st1)
+  RETURN x
+  ON_WRITE
+  dd4=val
+  WRITE dd4
+  ON_STREAM_REQ
+  READ st1
+  READ vp4
+  ON_ERROR
+  dd4=100000000000000
+  RETURN dd4
+end
+
+
+macros dd5 Œ“ Àﬁ◊≈ÕŒ
+  ON_READ
+  READ dd5
+  if st1=0
+  READ st1
+  fi
+  if vp4=0
+  READ vp4
+  fi
+  if vp3=0
+  READ vp3
+  fi
+  dd5=round(60*dd5*vp4/(st1*vp3))
+  RETURN dd5
+  ON_WRITE
+  dd5=val
+  WRITE dd5
+  ON_STREAM_REQ
+  READ st1
+  READ vp4
+  ON_ERROR
+  dd5=100000000000
+  RETURN dd5
+end
+
+
+macros dd6
+  ON_READ
+  READ dd6
+  dd6=dd6*5/2047
+  RETURN dd6
+  ON_WRITE
+  dd6=val*2047/5
+  WRITE dd6
+end
+
+
+macros dd9
+  ON_READ
+  READ dd9
+  dd9=dd9*5/2047
+  RETURN dd9
+  ON_WRITE
+  dd9=val*2047/5
+  WRITE dd9
+end
+
+
+macros dd10
+  ON_READ
+  READ dd10
+  dd10=dd10/128
+  RETURN dd10
+  ON_WRITE
+  dd10=val
+  WRITE dd10
+end
+
+
+macros dd19
+  ON_READ
+  READ dd19
+  dd19=dd19/178
+  RETURN dd19
+  ON_WRITE
+  dd19=val
+  WRITE dd19
+end
+
+
+macros dd12
+  ON_READ
+  READ dd12
+  dd12=dd12/21
+  RETURN dd12
+  ON_WRITE
+  dd12=val
+  WRITE dd12
+end
+
+
+macros tp2 Œ“ Àﬁ◊≈ÕŒ
+  ON_READ
+  READ tp2
+  tp2=tp2*25
+  RETURN tp2
+  ON_WRITE
+  tp2=val/25
+  WRITE tp2
+  ON_ERROR
+  err=100000000000
+  RETURN err
+end
+
+
+macros tp5
+  ON_READ
+  READ tp5
+  tp5=tp5*25
+  RETURN tp5
+  ON_WRITE
+  tp5=val/25
+  WRITE tp5
+  ON_ERROR
+  err=100000000000
+  RETURN err
+end
+
+
+macros tp6 Œ“ Àﬁ◊≈ÕŒ
+  ON_READ
+  READ tp6
+  if st1=0
+  READ st1
+  fi
+  if vp4=0
+  READ vp4
+  fi
+  if vp3=0
+  READ vp3
+  fi
+  tp6=round(60*tp6*vp4/(st1*vp3))
+  RETURN tp6
+  ON_WRITE
+  if st1=0
+  READ st1
+  fi
+  if vp4=0
+  READ vp4
+  fi
+  if vp3=0
+  READ vp3
+  fi
+  tp6=val*st1*vp3/(60*vp4)
+  WRITE tp6
+  ON_ERROR
+  tp6=100000000000000
+  RETURN tp6
+end
+
+
+macros vp10
+  ON_READ
+  READ vp10
+  if st1=0
+  READ st1
+  fi
+  if vp4=0
+  READ vp4
+  fi
+  if vp3=0
+  READ vp3
+  fi
+  vp10=round(60*vp10*vp4/(st1*vp3))
+  RETURN vp10
+  ON_WRITE
+  if st1=0
+  READ st1
+  fi
+  if vp4=0
+  READ vp4
+  fi
+  if vp3=0
+  READ vp3
+  fi
+  vp10=val*st1*vp3/(60*vp4)
+  WRITE vp10
+  ON_ERROR
+  vp10=100000000000000
+  RETURN vp10
+end
+
+
+macros vp11
+  ON_READ
+  READ vp11
+  if st1=0
+  READ st1
+  fi
+  if vp4=0
+  READ vp4
+  fi
+  if vp3=0
+  READ vp3
+  fi
+  vp11=round(60*vp11*vp4/(st1*vp3))
+  RETURN vp11
+  ON_WRITE
+  if st1=0
+  READ st1
+  fi
+  if vp4=0
+  READ vp4
+  fi
+  if vp3=0
+  READ vp3
+  fi
+  vp11=val*st1*vp3/(60*vp4)
+  WRITE vp11
+  ON_ERROR
+  vp11=100000000000000
+  RETURN vp11
+end
+
+
+macros vp12
+  ON_READ
+  READ vp12
+  if st1=0
+  READ st1
+  fi
+  if vp4=0
+  READ vp4
+  fi
+  if vp3=0
+  READ vp3
+  fi
+  vp12=round(60*vp12*vp4/(st1*vp3))
+  RETURN vp12
+  ON_WRITE
+  if st1=0
+  READ st1
+  fi
+  if vp4=0
+  READ vp4
+  fi
+  if vp3=0
+  READ vp3
+  fi
+  vp12=val*st1*vp3/(60*vp4)
+  WRITE vp12
+  ON_ERROR
+  vp12=100000000000000
+  RETURN vp12
+end
+
+
+macros vp13
+  ON_READ
+  READ vp13
+  if st1=0
+  READ st1
+  fi
+  if vp4=0
+  READ vp4
+  fi
+  if vp3=0
+  READ vp3
+  fi
+  vp13=round(60*vp13*vp4/(st1*vp3))
+  RETURN vp13
+  ON_WRITE
+  if st1=0
+  READ st1
+  fi
+  if vp4=0
+  READ vp4
+  fi
+  if vp3=0
+  READ vp3
+  fi
+  vp13=val*st1*vp3/(60*vp4)
+  WRITE vp13
+  ON_ERROR
+  vp13=100000000000000
+  RETURN vp13
+end
+
+
+macros vp14
+  ON_READ
+  READ vp14
+  if st1=0
+  READ st1
+  fi
+  if vp4=0
+  READ vp4
+  fi
+  x=round(60*vp14*1000/4000)
+  RETURN x
+  ON_WRITE
+  if st1=0
+  READ st1
+  fi
+  if vp4=0
+  READ vp4
+  fi
+  vp14=val*4000/(60*1000)
+  WRITE vp14
+  ON_STREAM_REQ
+  READ st1
+  READ vp4
+  ON_ERROR
+  dd4=100000000000000
+  RETURN vp14
+end
+
+
+macros ep2
+  ON_READ
+  READ ep2
+  ep2=ep2/21
+  RETURN ep2
+  ON_WRITE
+  ep2=val*21
+  WRITE ep2
+  ON_ERROR
+  RETURN ep2
+end
+
+
+macros dd15
+  ON_READ
+  READ dd15
+  dd15=dd15*25/1000
+  RETURN dd15
+  ON_WRITE
+  dd15=val
+  WRITE dd15
+end
+
+
+macros dd16
+  ON_READ
+  READ dd16
+  dd16=dd16*25/1000
+  RETURN dd16
+  ON_WRITE
+  dd16=val
+  WRITE dd16
+end
+
+
+macros vp6
+  ON_READ
+  READ vp6
+  if vp4=0
+  READ vp4
+  fi
+  vp6=vp6/vp4
+  RETURN vp6
+  ON_WRITE
+  if vp4=0
+  READ vp4
+  fi
+  vp6=val*vp4
+  WRITE vp6
+  ON_ERROR
+  vp6=100000000000000
+  RETURN vp6
+end
+
+
+macros dd20 Œ“ Àﬁ◊≈ÕŒ
+  ON_READ
+  READ dd20
+  dd20=dd20/4096
+  RETURN dd20
+  ON_WRITE
+  dd20=val
+  WRITE dd20
+end
+
+
+macros dd27
+  ON_READ
+  READ dd1
+  dd1=dd1*5/2047
+  RETURN dd1
+  ON_WRITE
+  dd1=val*2047/5
+  WRITE dd1
+end
+
+
+macros dd28
+  ON_READ
+  READ dd6
+  dd6=dd6/74
+  RETURN dd6
+  ON_WRITE
+  dd6=val*74
+  WRITE dd6
+end
+
+
+macros dd29
+  ON_READ
+  READ dd1
+  dd1=dd1/74
+  RETURN dd1
+  ON_WRITE
+  dd1=val*74
+  WRITE dd1
+end
+
