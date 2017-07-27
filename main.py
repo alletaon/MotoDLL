@@ -53,6 +53,7 @@ class MotoDll:
                  -19: 'TOO LONG',
                  -20: 'FRAMING_ERROR'}
     plcVersion = 3
+    readCallback = CFUNCTYPE(None, c_int, c_int, c_double, c_void_p, c_int)
 
     def __init__(self):
         self.lib = cdll.LoadLibrary('./moto_dll2.dll')
@@ -140,7 +141,7 @@ class MotoDll:
         result = self.lib.StopPLC(c_int(inv))
         self.__chekResult(result)
         speed = self.readVal(inv, b'ct2')
-        if speed > 0.0:
+        if speed != 0.0:
             self.writeVal(inv, b'ct2', 0.0)
 
     def loadProgram(self, motor, bank):
