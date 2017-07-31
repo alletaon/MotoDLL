@@ -140,6 +140,13 @@ class MotoDll:
         """
         result = self.lib.StopPLC(c_int(inv))
         self.__chekResult(result)
+        #reset drive for clear position and speed
+        self.writeVal(inv, b'dd11', 1.0)
+        self.writeVal(inv, b'dd11', 0.0)
+        req_pos = self.readVal(inv, b'dd7')
+        pos = self.readVal(inv, b'dd8')
+        if pos != req_pos:
+            self.writeVal(inv, b'ct3', pos)
         speed = self.readVal(inv, b'ct2')
         if speed != 0.0:
             self.writeVal(inv, b'ct2', 0.0)

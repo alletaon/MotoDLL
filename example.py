@@ -25,11 +25,11 @@ print('cp1 = ', val_new)
 moto.writeVal(1, b'cp1', val)
 position = moto.readVal(1, b'dd8')
 print('Pos: ', position)
-moto.startPLC(1, 0)
+moto.startPLC(1, 1)
 # read current program bank must be 3
 print(moto.readVal(1, b'ip2'))
 print(moto.readVal(1, b'ip11'))
-sleep(5)
+sleep(2)
 # read current plc status
 print(moto.readVal(1, b'ip11'))
 moto.stopPLC(1)
